@@ -10,7 +10,7 @@
     "copy": "cp src/index.html dist/index.html",
     "build": "npm run clean && npm run copy && npm run browserify",
     "start": "npm run build && http-server dist",
-    "publish": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
+    "deploy": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
   },
   "repository": {
     "type": "git",
