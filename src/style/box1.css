@@ -1,0 +1,8 @@
+.box {
+  extends: dottyBorder from "./borders.css";
+  padding: 10px;
+}
+
+.text {
+  font-style: italic;
+}

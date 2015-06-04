@@ -4,7 +4,13 @@
   "description": "A working demo of CSS Modules using browserify",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist && mkdir dist",
+    "browserify": "browserify -t css-modulesify -o dist/index.js src/index.js",
+    "copy": "cp src/index.html dist/index.html",
+    "build": "npm run clean && npm run copy && npm run browserify",
+    "start": "npm run build && http-server dist",
+    "publish": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/css-modules/browserify-demo/issues"
   },
-  "homepage": "https://github.com/css-modules/browserify-demo"
+  "homepage": "https://github.com/css-modules/browserify-demo",
+  "devDependencies": {
+    "browserify": "^10.2.3",
+    "css-modulesify": "^0.1.2",
+    "gh-pages": "^0.3.0",
+    "http-server": "^0.8.0",
+    "hyperscript": "^1.4.6",
+    "insert-css": "^0.2.0"
+  }
 }
