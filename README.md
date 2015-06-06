@@ -2,7 +2,7 @@
 
 # CSS Modules Browserify Demo
 
-A working demo of **CSS Modules**, using [css-modulesify](https://github.com/css-modules/css-modulesify).
+A working demo of [CSS Modules](https://github.com/css-modules/css-modules), using [css-modulesify](https://github.com/css-modules/css-modulesify).
 
 ## Run the example
 
