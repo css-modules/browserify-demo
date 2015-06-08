@@ -1,0 +1,9 @@
+.root {
+  /*extends: box from "../../../shared/styles/layout.css";*/
+  border-color: blue;
+}
+
+.text {
+  /*extends: heading from "../../../shared/styles/typography.css";*/
+  color: blue;
+}
