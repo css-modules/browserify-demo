@@ -409,7 +409,6 @@ module.exports = {"root":"_GlobalSelectors__root"}
 module.exports.toString = function () { return "\n._GlobalSelectors__root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: brown;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n:local(.root) p {\n  color: brown;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n"; }
 },{}],10:[function(require,module,exports){
 var styles = require('./GlobalSelectors.css');
-console.log(styles.toString());
 require('insert-css')(styles);
 
 var h = require('hyperscript');
@@ -432,7 +431,7 @@ module.exports = h('div', [
 
 },{"./StyleVariantA/StyleVariantA":13,"./StyleVariantB/StyleVariantB":15,"hyperscript":2}],12:[function(require,module,exports){
 module.exports = {"root":"_StyleVariantA__root","text":"_StyleVariantA__text"}
-module.exports.toString = function () { return "\n._StyleVariantA__root {\n  /*extends: box from \"../../../shared/styles/layout.css\";*/\n  border-color: red;\n}\n\n._StyleVariantA__text {\n  /*extends: heading from \"../../../shared/styles/typography.css\";*/\n  color: red;\n}\n"; }
+module.exports.toString = function () { return "\n._StyleVariantA__root {\n  /*composes: box from \"../../../shared/styles/layout.css\";*/\n  border-color: red;\n}\n\n._StyleVariantA__text {\n  /*composes: heading from \"../../../shared/styles/typography.css\";*/\n  color: red;\n}\n"; }
 },{}],13:[function(require,module,exports){
 var styles = require('./StyleVariantA.css');
 require('insert-css')(styles);
@@ -445,7 +444,7 @@ module.exports = h('div', { className: styles.root },
 
 },{"./StyleVariantA.css":12,"hyperscript":2,"insert-css":6}],14:[function(require,module,exports){
 module.exports = {"root":"_StyleVariantB__root","text":"_StyleVariantB__text"}
-module.exports.toString = function () { return "\n._StyleVariantB__root {\n  /*extends: box from \"../../../shared/styles/layout.css\";*/\n  border-color: blue;\n}\n\n._StyleVariantB__text {\n  /*extends: heading from \"../../../shared/styles/typography.css\";*/\n  color: blue;\n}\n"; }
+module.exports.toString = function () { return "\n._StyleVariantB__root {\n  /*composes: box from \"../../../shared/styles/layout.css\";*/\n  border-color: blue;\n}\n\n._StyleVariantB__text {\n  /*composes: heading from \"../../../shared/styles/typography.css\";*/\n  color: blue;\n}\n"; }
 },{}],15:[function(require,module,exports){
 var styles = require('./StyleVariantB.css');
 require('insert-css')(styles);
@@ -457,21 +456,21 @@ module.exports = h('div', { className: styles.root },
 );
 
 },{"./StyleVariantB.css":14,"hyperscript":2,"insert-css":6}],16:[function(require,module,exports){
-module.exports = {"root":"_InheritanceOverrides__root","text":"_InheritanceOverrides__text"}
-module.exports.toString = function () { return "\n._InheritanceOverrides__root {\n  /*extends: box from \"../../shared/styles/layout.css\";*/\n  border-style: dotted;\n  border-color: green;\n}\n\n._InheritanceOverrides__text {\n  /*extends: heading from \"../../shared/styles/typography.css\";*/\n  font-weight: 200;\n  color: green;\n}\n"; }
+module.exports = {"root":"_CompositionOverrides__root","text":"_CompositionOverrides__text"}
+module.exports.toString = function () { return "\n._CompositionOverrides__root {\n  /*composes: box from \"../../shared/styles/layout.css\";*/\n  border-style: dotted;\n  border-color: green;\n}\n\n._CompositionOverrides__text {\n  /*composes: heading from \"../../shared/styles/typography.css\";*/\n  font-weight: 200;\n  color: green;\n}\n"; }
 },{}],17:[function(require,module,exports){
-var styles = require('./InheritanceOverrides.css');
+var styles = require('./CompositionOverrides.css');
 require('insert-css')(styles);
 
 var h = require('hyperscript');
 
 module.exports = h('div', { className: styles.root },
-  h('p', { className: styles.text }, 'Inherited Styles with Overrides')
+  h('p', { className: styles.text }, 'Class Composition with Overrides')
 );
 
-},{"./InheritanceOverrides.css":16,"hyperscript":2,"insert-css":6}],18:[function(require,module,exports){
+},{"./CompositionOverrides.css":16,"hyperscript":2,"insert-css":6}],18:[function(require,module,exports){
 module.exports = {"root":"_ScopedAnimations__root","ball":"_ScopedAnimations__ball"}
-module.exports.toString = function () { return "\n._ScopedAnimations__root {\n  padding: 20px 10px;\n}\n\n._ScopedAnimations__ball {\n  /*extends: bounce from \"../../shared/styles/animations.css\";*/\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n"; }
+module.exports.toString = function () { return "\n._ScopedAnimations__root {\n  padding: 20px 10px;\n}\n\n._ScopedAnimations__ball {\n  /*composes: bounce from \"../../shared/styles/animations.css\";*/\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n"; }
 },{}],19:[function(require,module,exports){
 var styles = require('./ScopedAnimations.css');
 require('insert-css')(styles);
@@ -493,8 +492,8 @@ var h = require('hyperscript');
 
 var ScopedSelectors = require('./1-ScopedSelectors/ScopedSelectors');
 var GlobalSelectors = require('./2-GlobalSelectors/GlobalSelectors');
-var ClassInheritance = require('./3-ClassInheritance/ClassInheritance');
-var InheritanceOverrides = require('./4-InheritanceOverrides/InheritanceOverrides');
+var ClassComposition = require('./3-ClassComposition/ClassComposition');
+var CompositionOverrides = require('./4-CompositionOverrides/CompositionOverrides');
 var ScopedAnimations = require('./5-ScopedAnimations/ScopedAnimations');
 
 module.exports = h('div', { className: styles.app }, [
@@ -534,31 +533,31 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Class Inheritance (INCOMPLETE)'),
+  h('h2', { className: styles.incomplete }, 'Class Composition (INCOMPLETE)'),
   h('p', [
     'Both of the components below have ',
     h('strong', 'locally scoped CSS'),
     ' that ',
-    h('strong', 'inherits from a common set of CSS Modules.')
+    h('strong', 'composes a common set of CSS Modules.')
   ]),
   h('p', [
     'Since ',
-    h('strong', 'CSS Modules can be composed'),
+    h('strong', 'identifiers from CSS Modules can be composed'),
     ', the resulting markup is optimised by ',
     h('b', 'reusing classes between components.')
   ]),
-  ClassInheritance,
+  ClassComposition,
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Inheritance Overrides (INCOMPLETE)'),
+  h('h2', { className: styles.incomplete }, 'Composition Overrides (INCOMPLETE)'),
   h('p', [
-    'When extending classes, ',
-    h('strong', 'inherited style properties can be overridden'),
+    'When composing classes, ',
+    h('strong', ' style properties can be overridden'),
     ' as you\'d expect.'
   ]),
-  h('p', 'The following component extends two different classes, but provides overrides which then take precedence.'),
-  InheritanceOverrides,
+  h('p', 'The following component composes two different classes, but provides overrides which then take precedence.'),
+  CompositionOverrides,
 
   h('hr', { className: styles.hr }),
 
@@ -572,7 +571,7 @@ module.exports = h('div', { className: styles.app }, [
   ScopedAnimations
 ]);
 
-},{"./1-ScopedSelectors/ScopedSelectors":8,"./2-GlobalSelectors/GlobalSelectors":10,"./3-ClassInheritance/ClassInheritance":11,"./4-InheritanceOverrides/InheritanceOverrides":17,"./5-ScopedAnimations/ScopedAnimations":19,"./App.css":20,"hyperscript":2,"insert-css":6}],22:[function(require,module,exports){
+},{"./1-ScopedSelectors/ScopedSelectors":8,"./2-GlobalSelectors/GlobalSelectors":10,"./3-ClassComposition/ClassComposition":11,"./4-CompositionOverrides/CompositionOverrides":17,"./5-ScopedAnimations/ScopedAnimations":19,"./App.css":20,"hyperscript":2,"insert-css":6}],22:[function(require,module,exports){
 var App = require('./components/App');
 
 document.getElementById('content').appendChild(App);
