@@ -392,35 +392,189 @@ module.exports = function (css, options) {
 };
 
 },{}],7:[function(require,module,exports){
-module.exports = {"box":"_box1__box _borders__dottyBorder","text":"_box1__text"}
-module.exports.toString = function () { return "\n._borders__dottyBorder {\n  border: 1px dotted #000;\n}\n\n._box1__box {\n  padding: 10px;\n}\n\n._box1__text {\n  font-style: italic;\n}\n"; }
+module.exports = {"root":"_ScopedSelectors__root","text":"_ScopedSelectors__text"}
+module.exports.toString = function () { return "\n._ScopedSelectors__root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: #777;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n._ScopedSelectors__text {\n  color: #777;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n"; }
 },{}],8:[function(require,module,exports){
-module.exports = {"box":"_box2__box","text":"_box2__text"}
-module.exports.toString = function () { return "\n._box2__box {\n  padding: 10px;\n  background: #555;\n  transition: all 1s;\n}\n\n._box2__box:hover {\n  background: #933;\n}\n\n._box2__text {\n  color: #fff;\n  font-weight: bold;\n}\n"; }
-},{}],9:[function(require,module,exports){
-var box1 = require('./style/box1.css');
-var box2 = require('./style/box2.css');
+var styles = require('./ScopedSelectors.css');
+require('insert-css')(styles);
 
 var h = require('hyperscript');
 
-// dynamically add the css to the browser (this could be done at build-time instead)
-var insertCss = require('insert-css');
-insertCss(box1);
-insertCss(box2);
+module.exports = h('div', { className: styles.root },
+  h('p', { className: styles.text }, 'Scoped Selectors')
+);
 
-// create the markup and apply locally-scoped css classnames
-var content = h('div', [
-  h('p', 'This is a demonstration of using generic classnames in css files like `.box` and `.text`, without any danger of name collisions between components'),
+},{"./ScopedSelectors.css":7,"hyperscript":2,"insert-css":6}],9:[function(require,module,exports){
+module.exports = {"root":"_GlobalSelectors__root"}
+module.exports.toString = function () { return "\n._GlobalSelectors__root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: brown;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n:local(.root) p {\n  color: brown;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n"; }
+},{}],10:[function(require,module,exports){
+var styles = require('./GlobalSelectors.css');
+console.log(styles.toString());
+require('insert-css')(styles);
 
-  h('div', { className: box1.box }, [
-    h('p', { className: box1.text }, 'Box 1')
-  ]),
+var h = require('hyperscript');
 
-  h('div', { className: box2.box }, [
-    h('p', { className: box2.text }, 'Box 2')
-  ])
+module.exports = h('div', { className: styles.root },
+  h('p', 'Global Selectors')
+);
+
+},{"./GlobalSelectors.css":9,"hyperscript":2,"insert-css":6}],11:[function(require,module,exports){
+var h = require('hyperscript');
+
+var StyleVariantA = require('./StyleVariantA/StyleVariantA');
+var StyleVariantB = require('./StyleVariantB/StyleVariantB');
+
+module.exports = h('div', [
+  StyleVariantA,
+  h('br'),
+  StyleVariantB
 ]);
 
-document.getElementById('content').appendChild(content);
+},{"./StyleVariantA/StyleVariantA":13,"./StyleVariantB/StyleVariantB":15,"hyperscript":2}],12:[function(require,module,exports){
+module.exports = {"root":"_StyleVariantA__root","text":"_StyleVariantA__text"}
+module.exports.toString = function () { return "\n._StyleVariantA__root {\n  /*extends: box from \"../../../shared/styles/layout.css\";*/\n  border-color: red;\n}\n\n._StyleVariantA__text {\n  /*extends: heading from \"../../../shared/styles/typography.css\";*/\n  color: red;\n}\n"; }
+},{}],13:[function(require,module,exports){
+var styles = require('./StyleVariantA.css');
+require('insert-css')(styles);
 
-},{"./style/box1.css":7,"./style/box2.css":8,"hyperscript":2,"insert-css":6}]},{},[9]);
+var h = require('hyperscript');
+
+module.exports = h('div', { className: styles.root },
+  h('p', { className: styles.text }, 'Style Variant A')
+);
+
+},{"./StyleVariantA.css":12,"hyperscript":2,"insert-css":6}],14:[function(require,module,exports){
+module.exports = {"root":"_StyleVariantB__root","text":"_StyleVariantB__text"}
+module.exports.toString = function () { return "\n._StyleVariantB__root {\n  /*extends: box from \"../../../shared/styles/layout.css\";*/\n  border-color: blue;\n}\n\n._StyleVariantB__text {\n  /*extends: heading from \"../../../shared/styles/typography.css\";*/\n  color: blue;\n}\n"; }
+},{}],15:[function(require,module,exports){
+var styles = require('./StyleVariantB.css');
+require('insert-css')(styles);
+
+var h = require('hyperscript');
+
+module.exports = h('div', { className: styles.root },
+  h('p', { className: styles.text }, 'Style Variant B')
+);
+
+},{"./StyleVariantB.css":14,"hyperscript":2,"insert-css":6}],16:[function(require,module,exports){
+module.exports = {"root":"_InheritanceOverrides__root","text":"_InheritanceOverrides__text"}
+module.exports.toString = function () { return "\n._InheritanceOverrides__root {\n  /*extends: box from \"../../shared/styles/layout.css\";*/\n  border-style: dotted;\n  border-color: green;\n}\n\n._InheritanceOverrides__text {\n  /*extends: heading from \"../../shared/styles/typography.css\";*/\n  font-weight: 200;\n  color: green;\n}\n"; }
+},{}],17:[function(require,module,exports){
+var styles = require('./InheritanceOverrides.css');
+require('insert-css')(styles);
+
+var h = require('hyperscript');
+
+module.exports = h('div', { className: styles.root },
+  h('p', { className: styles.text }, 'Inherited Styles with Overrides')
+);
+
+},{"./InheritanceOverrides.css":16,"hyperscript":2,"insert-css":6}],18:[function(require,module,exports){
+module.exports = {"root":"_ScopedAnimations__root","ball":"_ScopedAnimations__ball"}
+module.exports.toString = function () { return "\n._ScopedAnimations__root {\n  padding: 20px 10px;\n}\n\n._ScopedAnimations__ball {\n  /*extends: bounce from \"../../shared/styles/animations.css\";*/\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n"; }
+},{}],19:[function(require,module,exports){
+var styles = require('./ScopedAnimations.css');
+require('insert-css')(styles);
+
+var h = require('hyperscript');
+
+module.exports = h('div', { className: styles.root },
+  h('div', { className: styles.ball })
+);
+
+},{"./ScopedAnimations.css":18,"hyperscript":2,"insert-css":6}],20:[function(require,module,exports){
+module.exports = {"app":"_App__app","hr":"_App__hr","incomplete":"_App__incomplete"}
+module.exports.toString = function () { return "\n._App__app {\n  text-size-adjust: none;\n  font-family: helvetica, arial, sans-serif;\n  line-height: 200%;\n  padding: 6px 20px 30px;\n}\n\n._App__hr {\n  margin: 40px 0;\n  height: 1px;\n  border: 0;\n  background: #ccc;\n}\n\n._App__incomplete {\n  color: red;\n}\n"; }
+},{}],21:[function(require,module,exports){
+var styles = require('./App.css');
+require('insert-css')(styles);
+
+var h = require('hyperscript');
+
+var ScopedSelectors = require('./1-ScopedSelectors/ScopedSelectors');
+var GlobalSelectors = require('./2-GlobalSelectors/GlobalSelectors');
+var ClassInheritance = require('./3-ClassInheritance/ClassInheritance');
+var InheritanceOverrides = require('./4-InheritanceOverrides/InheritanceOverrides');
+var ScopedAnimations = require('./5-ScopedAnimations/ScopedAnimations');
+
+module.exports = h('div', { className: styles.app }, [
+  h('h1', 'CSS Modules Browserify Demo'),
+
+  h('hr', { className: styles.hr }),
+
+  h('h2', 'Scoped Selectors'),
+  h('p', 'In CSS Modules, selectors are scoped by default.'),
+  h('p', [
+    'The following component uses two classes, ',
+    h('strong', '.root'),
+    ' and ',
+    h('strong', '.text'),
+    ', both of which would typically be too vague in a larger project.'
+  ]),
+  h('p', [
+    'CSS Module semantics ensure that these ',
+    h('strong', 'classes are locally scoped'),
+    ' to the component and don\'t collide with other classes in the global scope.'
+  ]),
+  ScopedSelectors,
+
+  h('hr', { className: styles.hr }),
+
+  h('h2', { className: styles.incomplete }, 'Global Selectors (INCOMPLETE)'),
+  h('p', [
+    'Although they should be used as sparingly as possible, ',
+    h('strong', 'global selectors are still available when required.')
+  ]),
+  h('p', [
+    'The following component styles all ',
+    h('strong', '<p>'),
+    ' tags nested inside it.'
+  ]),
+  GlobalSelectors,
+
+  h('hr', { className: styles.hr }),
+
+  h('h2', { className: styles.incomplete }, 'Class Inheritance (INCOMPLETE)'),
+  h('p', [
+    'Both of the components below have ',
+    h('strong', 'locally scoped CSS'),
+    ' that ',
+    h('strong', 'inherits from a common set of CSS Modules.')
+  ]),
+  h('p', [
+    'Since ',
+    h('strong', 'CSS Modules can be composed'),
+    ', the resulting markup is optimised by ',
+    h('b', 'reusing classes between components.')
+  ]),
+  ClassInheritance,
+
+  h('hr', { className: styles.hr }),
+
+  h('h2', { className: styles.incomplete }, 'Inheritance Overrides (INCOMPLETE)'),
+  h('p', [
+    'When extending classes, ',
+    h('strong', 'inherited style properties can be overridden'),
+    ' as you\'d expect.'
+  ]),
+  h('p', 'The following component extends two different classes, but provides overrides which then take precedence.'),
+  InheritanceOverrides,
+
+  h('hr', { className: styles.hr }),
+
+  h('h2', { className: styles.incomplete }, 'Scoped Animations (INCOMPLETE)'),
+  h('p', [
+    'CSS Modules even provide ',
+    h('strong', 'locally scoped animations'),
+    ', which are typically defined in the global scope.'
+  ]),
+  h('p', 'The animation\'s keyframes are private to the animations module, only exposed publicly via a class which this component inherits from.'),
+  ScopedAnimations
+]);
+
+},{"./1-ScopedSelectors/ScopedSelectors":8,"./2-GlobalSelectors/GlobalSelectors":10,"./3-ClassInheritance/ClassInheritance":11,"./4-InheritanceOverrides/InheritanceOverrides":17,"./5-ScopedAnimations/ScopedAnimations":19,"./App.css":20,"hyperscript":2,"insert-css":6}],22:[function(require,module,exports){
+var App = require('./components/App');
+
+document.getElementById('content').appendChild(App);
+
+},{"./components/App":21}]},{},[22]);
