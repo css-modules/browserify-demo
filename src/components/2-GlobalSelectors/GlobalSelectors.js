@@ -1,5 +1,4 @@
 var styles = require('./GlobalSelectors.css');
-console.log(styles.toString());
 require('insert-css')(styles);
 
 var h = require('hyperscript');
