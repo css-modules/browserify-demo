@@ -4,6 +4,8 @@
 
 A working demo of [CSS Modules](https://github.com/css-modules/css-modules), using [css-modulesify](https://github.com/css-modules/css-modulesify).
 
+**Please note that this is still highly experimental.**
+
 ## Run the example
 
 ```bash
