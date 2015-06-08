@@ -5,8 +5,8 @@ var h = require('hyperscript');
 
 var ScopedSelectors = require('./1-ScopedSelectors/ScopedSelectors');
 var GlobalSelectors = require('./2-GlobalSelectors/GlobalSelectors');
-var ClassInheritance = require('./3-ClassInheritance/ClassInheritance');
-var InheritanceOverrides = require('./4-InheritanceOverrides/InheritanceOverrides');
+var ClassComposition = require('./3-ClassComposition/ClassComposition');
+var CompositionOverrides = require('./4-CompositionOverrides/CompositionOverrides');
 var ScopedAnimations = require('./5-ScopedAnimations/ScopedAnimations');
 
 module.exports = h('div', { className: styles.app }, [
@@ -46,31 +46,31 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Class Inheritance (INCOMPLETE)'),
+  h('h2', { className: styles.incomplete }, 'Class Composition (INCOMPLETE)'),
   h('p', [
     'Both of the components below have ',
     h('strong', 'locally scoped CSS'),
     ' that ',
-    h('strong', 'inherits from a common set of CSS Modules.')
+    h('strong', 'composes a common set of CSS Modules.')
   ]),
   h('p', [
     'Since ',
-    h('strong', 'CSS Modules can be composed'),
+    h('strong', 'identifiers from CSS Modules can be composed'),
     ', the resulting markup is optimised by ',
     h('b', 'reusing classes between components.')
   ]),
-  ClassInheritance,
+  ClassComposition,
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Inheritance Overrides (INCOMPLETE)'),
+  h('h2', { className: styles.incomplete }, 'Composition Overrides (INCOMPLETE)'),
   h('p', [
-    'When extending classes, ',
-    h('strong', 'inherited style properties can be overridden'),
+    'When composing classes, ',
+    h('strong', ' style properties can be overridden'),
     ' as you\'d expect.'
   ]),
-  h('p', 'The following component extends two different classes, but provides overrides which then take precedence.'),
-  InheritanceOverrides,
+  h('p', 'The following component composes two different classes, but provides overrides which then take precedence.'),
+  CompositionOverrides,
 
   h('hr', { className: styles.hr }),
 
