@@ -63,7 +63,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Composition Overrides (INCOMPLETE)'),
+  h('h2', 'Composition Overrides'),
   h('p', [
     'When composing classes, ',
     h('strong', ' style properties can be overridden'),
@@ -74,7 +74,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', 'Scoped Animations'),
+  h('h2', { className: styles.incomplete }, 'Scoped Animations (INCOMPLETE)'),
   h('p', [
     'CSS Modules even provide ',
     h('strong', 'locally scoped animations'),
