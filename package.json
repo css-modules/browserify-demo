@@ -24,7 +24,7 @@
   "homepage": "https://github.com/css-modules/browserify-demo",
   "devDependencies": {
     "browserify": "^10.2.3",
-    "css-modulesify": "git://github.com/css-modules/css-modulesify#c0bfe993de60ba63cd7215956d67104ada74ec27",
+    "css-modulesify": "git://github.com/css-modules/css-modulesify#c440bbb203b1966c8c764546f8ed292bb19e0322",
     "gh-pages": "git://github.com/markdalgleish/gh-pages#cli-message",
     "http-server": "^0.8.0",
     "hyperscript": "^1.4.6",

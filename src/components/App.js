@@ -46,7 +46,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Class Composition (INCOMPLETE)'),
+  h('h2', 'Class Composition'),
   h('p', [
     'Both of the components below have ',
     h('strong', 'locally scoped CSS'),
@@ -74,7 +74,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Scoped Animations (INCOMPLETE)'),
+  h('h2', 'Scoped Animations'),
   h('p', [
     'CSS Modules even provide ',
     h('strong', 'locally scoped animations'),
