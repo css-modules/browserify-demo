@@ -430,8 +430,8 @@ module.exports = h('div', [
 ]);
 
 },{"./StyleVariantA/StyleVariantA":13,"./StyleVariantB/StyleVariantB":15,"hyperscript":2}],12:[function(require,module,exports){
-module.exports = {"root":"_StyleVariantA__root","text":"_StyleVariantA__text"}
-module.exports.toString = function () { return "\n._StyleVariantA__root {\n  /*composes: box from \"../../../shared/styles/layout.css\";*/\n  border-color: red;\n}\n\n._StyleVariantA__text {\n  /*composes: heading from \"../../../shared/styles/typography.css\";*/\n  color: red;\n}\n"; }
+module.exports = {"root":"_StyleVariantA__root _shared_styles_layout__box","text":"_StyleVariantA__text _shared_styles_typography__heading"}
+module.exports.toString = function () { return "\n._shared_styles_layout__box {\n  border-width: 2px;\n  border-style: solid;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n._shared_styles_typography__heading {\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n\n._StyleVariantA__root {\n  border-color: red;\n}\n\n._StyleVariantA__text {\n  color: red;\n}\n"; }
 },{}],13:[function(require,module,exports){
 var styles = require('./StyleVariantA.css');
 require('insert-css')(styles);
@@ -443,8 +443,8 @@ module.exports = h('div', { className: styles.root },
 );
 
 },{"./StyleVariantA.css":12,"hyperscript":2,"insert-css":6}],14:[function(require,module,exports){
-module.exports = {"root":"_StyleVariantB__root","text":"_StyleVariantB__text"}
-module.exports.toString = function () { return "\n._StyleVariantB__root {\n  /*composes: box from \"../../../shared/styles/layout.css\";*/\n  border-color: blue;\n}\n\n._StyleVariantB__text {\n  /*composes: heading from \"../../../shared/styles/typography.css\";*/\n  color: blue;\n}\n"; }
+module.exports = {"root":"_StyleVariantB__root _shared_styles_layout__box","text":"_StyleVariantB__text _shared_styles_typography__heading"}
+module.exports.toString = function () { return "\n._shared_styles_layout__box {\n  border-width: 2px;\n  border-style: solid;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n._shared_styles_typography__heading {\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n\n._StyleVariantB__root {\n  border-color: blue;\n}\n\n._StyleVariantB__text {\n  color: blue;\n}\n"; }
 },{}],15:[function(require,module,exports){
 var styles = require('./StyleVariantB.css');
 require('insert-css')(styles);
@@ -456,8 +456,8 @@ module.exports = h('div', { className: styles.root },
 );
 
 },{"./StyleVariantB.css":14,"hyperscript":2,"insert-css":6}],16:[function(require,module,exports){
-module.exports = {"root":"_CompositionOverrides__root","text":"_CompositionOverrides__text"}
-module.exports.toString = function () { return "\n._CompositionOverrides__root {\n  /*composes: box from \"../../shared/styles/layout.css\";*/\n  border-style: dotted;\n  border-color: green;\n}\n\n._CompositionOverrides__text {\n  /*composes: heading from \"../../shared/styles/typography.css\";*/\n  font-weight: 200;\n  color: green;\n}\n"; }
+module.exports = {"root":"_CompositionOverrides__root _shared_styles_layout__box","text":"_CompositionOverrides__text _shared_styles_typography__heading"}
+module.exports.toString = function () { return "\n._shared_styles_layout__box {\n  border-width: 2px;\n  border-style: solid;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n._shared_styles_typography__heading {\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n\n._CompositionOverrides__root {\n  border-style: dotted;\n  border-color: green;\n}\n\n._CompositionOverrides__text {\n  font-weight: 200;\n  color: green;\n}\n"; }
 },{}],17:[function(require,module,exports){
 var styles = require('./CompositionOverrides.css');
 require('insert-css')(styles);
@@ -469,8 +469,8 @@ module.exports = h('div', { className: styles.root },
 );
 
 },{"./CompositionOverrides.css":16,"hyperscript":2,"insert-css":6}],18:[function(require,module,exports){
-module.exports = {"root":"_ScopedAnimations__root","ball":"_ScopedAnimations__ball"}
-module.exports.toString = function () { return "\n._ScopedAnimations__root {\n  padding: 20px 10px;\n}\n\n._ScopedAnimations__ball {\n  /*composes: bounce from \"../../shared/styles/animations.css\";*/\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n"; }
+module.exports = {"root":"_ScopedAnimations__root","ball":"_ScopedAnimations__ball _shared_styles_animations__bounce"}
+module.exports.toString = function () { return "\n@keyframes bounce {\n  33% { transform: translateY(-20px); }\n  66% { transform: translateY(0px); }\n}\n\n._shared_styles_animations__bounce {\n  animation: bounce 1s infinite ease-in-out;\n}\n\n._ScopedAnimations__root {\n  padding: 20px 10px;\n}\n\n._ScopedAnimations__ball {\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n"; }
 },{}],19:[function(require,module,exports){
 var styles = require('./ScopedAnimations.css');
 require('insert-css')(styles);
@@ -533,7 +533,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Class Composition (INCOMPLETE)'),
+  h('h2', 'Class Composition'),
   h('p', [
     'Both of the components below have ',
     h('strong', 'locally scoped CSS'),
@@ -561,7 +561,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Scoped Animations (INCOMPLETE)'),
+  h('h2', 'Scoped Animations'),
   h('p', [
     'CSS Modules even provide ',
     h('strong', 'locally scoped animations'),
