@@ -1,5 +1,4 @@
 var styles = require('./App.css');
-require('insert-css')(styles);
 
 var h = require('hyperscript');
 

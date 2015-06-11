@@ -1,5 +1,4 @@
 var styles = require('./ScopedAnimations.css');
-require('insert-css')(styles);
 
 var h = require('hyperscript');
 
