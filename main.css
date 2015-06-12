@@ -17,6 +17,22 @@
   color: red;
 }
 
+._ScopedSelectors__root {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #777;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+._ScopedSelectors__text {
+  color: #777;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+
 ._GlobalSelectors__root {
   border-width: 2px;
   border-style: solid;
@@ -33,20 +49,24 @@
   font-weight: 600;
 }
 
-._ScopedSelectors__root {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #777;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
+@keyframes bounce {
+  33% { transform: translateY(-20px); }
+  66% { transform: translateY(0px); }
 }
 
-._ScopedSelectors__text {
-  color: #777;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
+._shared_styles_animations__bounce {
+  animation: bounce 1s infinite ease-in-out;
+}
+
+._ScopedAnimations__root {
+  padding: 20px 10px;
+}
+
+._ScopedAnimations__ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rebeccapurple;
 }
 
 ._shared_styles_layout__box {
@@ -73,24 +93,12 @@
   color: green;
 }
 
-@keyframes bounce {
-  33% { transform: translateY(-20px); }
-  66% { transform: translateY(0px); }
+._StyleVariantA__root {
+  border-color: red;
 }
 
-._shared_styles_animations__bounce {
-  animation: bounce 1s infinite ease-in-out;
-}
-
-._ScopedAnimations__root {
-  padding: 20px 10px;
-}
-
-._ScopedAnimations__ball {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: rebeccapurple;
+._StyleVariantA__text {
+  color: red;
 }
 
 ._StyleVariantB__root {
@@ -99,12 +107,4 @@
 
 ._StyleVariantB__text {
   color: blue;
-}
-
-._StyleVariantA__root {
-  border-color: red;
-}
-
-._StyleVariantA__text {
-  color: red;
 }
