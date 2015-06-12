@@ -10,7 +10,7 @@ A working demo of [CSS Modules](https://github.com/css-modules/css-modules), usi
 
 ```bash
 $ npm install
-$ npm start & open http://localhost:8080
+$ npm start
 ```
 
 ## License
