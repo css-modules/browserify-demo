@@ -481,7 +481,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Global Selectors'),
+  h('h2', 'Global Selectors'),
   h('p', [
     'Although they should be used as sparingly as possible, ',
     h('strong', 'global selectors are still available when required.')
@@ -523,7 +523,7 @@ module.exports = h('div', { className: styles.app }, [
 
   h('hr', { className: styles.hr }),
 
-  h('h2', { className: styles.incomplete }, 'Scoped Animations'),
+  h('h2', 'Scoped Animations'),
   h('p', [
     'CSS Modules even provide ',
     h('strong', 'locally scoped animations'),
