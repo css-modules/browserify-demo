@@ -89,18 +89,18 @@
   background: rebeccapurple;
 }
 
-._StyleVariantA__root {
-  border-color: red;
-}
-
-._StyleVariantA__text {
-  color: red;
-}
-
 ._StyleVariantB__root {
   border-color: blue;
 }
 
 ._StyleVariantB__text {
   color: blue;
+}
+
+._StyleVariantA__root {
+  border-color: red;
+}
+
+._StyleVariantA__text {
+  color: red;
 }
