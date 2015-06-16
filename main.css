@@ -1,4 +1,3 @@
-
 ._App__app {
   text-size-adjust: none;
   font-family: helvetica, arial, sans-serif;
@@ -17,24 +16,6 @@
   color: red;
 }
 
-
-._GlobalSelectors__root {
-  border-width: 2px;
-  border-style: solid;
-  border-color: brown;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-
-:local(.root) p {
-  color: brown;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
-
-
 ._ScopedSelectors__root {
   border-width: 2px;
   border-style: solid;
@@ -51,6 +32,21 @@
   font-weight: 600;
 }
 
+._GlobalSelectors__root {
+  border-width: 2px;
+  border-style: solid;
+  border-color: brown;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+._GlobalSelectors__root p {
+  color: brown;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
 
 ._shared_styles_layout__box {
   border-width: 2px;
@@ -59,13 +55,11 @@
   margin: 0 6px;
   max-width: 400px;
 }
-
 ._shared_styles_typography__heading {
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
 }
-
 ._CompositionOverrides__root {
   border-style: dotted;
   border-color: green;
@@ -76,16 +70,14 @@
   color: green;
 }
 
-
-@keyframes bounce {
+@keyframes _shared_styles_animations__bounce {
   33% { transform: translateY(-20px); }
   66% { transform: translateY(0px); }
 }
 
 ._shared_styles_animations__bounce {
-  animation: bounce 1s infinite ease-in-out;
+  animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
 }
-
 ._ScopedAnimations__root {
   padding: 20px 10px;
 }
@@ -97,6 +89,13 @@
   background: rebeccapurple;
 }
 
+._StyleVariantA__root {
+  border-color: red;
+}
+
+._StyleVariantA__text {
+  color: red;
+}
 
 ._StyleVariantB__root {
   border-color: blue;
@@ -104,13 +103,4 @@
 
 ._StyleVariantB__text {
   color: blue;
-}
-
-
-._StyleVariantA__root {
-  border-color: red;
-}
-
-._StyleVariantA__text {
-  color: red;
 }
