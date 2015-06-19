@@ -12,8 +12,11 @@
   background: #ccc;
 }
 
-._App__incomplete {
-  color: red;
+._Logo__logo {
+  /* todo: fix rewriteUrl error and use url(./logo.svg) */
+  background-size: 200px 200px;
+  width: 200px;
+  height: 200px;
 }
 
 ._ScopedSelectors__root {
@@ -48,6 +51,66 @@
   font-weight: 600;
 }
 
+._Snippet__root {
+  margin-top: 32px;
+}
+
+._Snippet__output {
+  background: white;
+  color: #333;
+  max-width: 700px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #003957;
+  border-top-width: 0;
+}
+
+._Snippet__outputContent {
+  padding: 40px 30px;
+}
+
+._Snippet__file {
+  background: #003957;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+._Snippet__fileName {
+  background: #011E2D;
+  color: #00B37D;
+  padding: 10px 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+._Snippet__pre {
+  overflow: auto;
+  font-family: menlo, consolas, monospace;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 20px 20px;
+}
+
+@keyframes _shared_styles_animations__bounce {
+  33% { transform: translateY(-20px); }
+  66% { transform: translateY(0px); }
+}
+
+._shared_styles_animations__bounce {
+  animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
+}
+._ScopedAnimations__root {
+  padding: 20px 10px;
+}
+
+._ScopedAnimations__ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rebeccapurple;
+}
+
 ._shared_styles_layout__box {
   border-width: 2px;
   border-style: solid;
@@ -68,25 +131,6 @@
 ._CompositionOverrides__text {
   font-weight: 200;
   color: green;
-}
-
-@keyframes _shared_styles_animations__bounce {
-  33% { transform: translateY(-20px); }
-  66% { transform: translateY(0px); }
-}
-
-._shared_styles_animations__bounce {
-  animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
-}
-._ScopedAnimations__root {
-  padding: 20px 10px;
-}
-
-._ScopedAnimations__ball {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: rebeccapurple;
 }
 
 ._StyleVariantA__root {
