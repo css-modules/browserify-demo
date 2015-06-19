@@ -4,6 +4,8 @@
 
 A working demo of [CSS Modules](https://github.com/css-modules/css-modules), using [css-modulesify](https://github.com/css-modules/css-modulesify).
 
+Brazenly plagiarized from <https://github.com/css-modules/webpack-demo>
+
 **Please note that this is still highly experimental.**
 
 ## Run the example
@@ -12,6 +14,10 @@ A working demo of [CSS Modules](https://github.com/css-modules/css-modules), usi
 $ npm install
 $ npm start
 ```
+
+## Acknowledgements
+
+Special thanks to [@markdalgleish](https://github.com/markdalgleish) for <https://github.com/css-modules/webpack-demo>
 
 ## License
 

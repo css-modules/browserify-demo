@@ -1,7 +1,15 @@
-var styles = require('./ScopedAnimations.css');
+import styles from './ScopedAnimations.css';
 
-var h = require('hyperscript');
+import React, { Component } from 'react';
 
-module.exports = h('div', { className: styles.root },
-  h('div', { className: styles.ball })
-);
+export default class ScopedAnimations extends Component {
+
+  render() {
+    return (
+      <div className={styles.root}>
+        <div className={styles.ball} />
+      </div>
+    );
+  }
+
+};

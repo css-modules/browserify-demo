@@ -1,10 +1,18 @@
-var h = require('hyperscript');
+import React, { Component } from 'react';
 
-var StyleVariantA = require('./StyleVariantA/StyleVariantA');
-var StyleVariantB = require('./StyleVariantB/StyleVariantB');
+import StyleVariantA from './StyleVariantA/StyleVariantA';
+import StyleVariantB from './StyleVariantB/StyleVariantB';
 
-module.exports = h('div', [
-  StyleVariantA,
-  h('br'),
-  StyleVariantB
-]);
+export default class ClassComposition extends Component {
+
+  render() {
+    return (
+      <div>
+        <StyleVariantA />
+        <br />
+        <StyleVariantB />
+      </div>
+    );
+  }
+
+};

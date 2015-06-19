@@ -1,7 +1,15 @@
-var styles = require('./CompositionOverrides.css');
+import styles from './CompositionOverrides.css';
 
-var h = require('hyperscript');
+import React, { Component } from 'react';
 
-module.exports = h('div', { className: styles.root },
-  h('p', { className: styles.text }, 'Class Composition with Overrides')
-);
+export default class CompositionOverrides extends Component {
+
+  render() {
+    return (
+      <div className={styles.root}>
+        <p className={styles.text}>Class Composition with Overrides</p>
+      </div>
+    );
+  }
+
+};

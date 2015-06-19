@@ -1,3 +1,9 @@
-var App = require('./components/App');
+import React from 'react';
 
-document.getElementById('content').appendChild(App);
+import App from './components/App';
+
+if (typeof document !== 'undefined') {
+  React.render(<App />, document.getElementById('outlet'));
+}
+
+export default App;

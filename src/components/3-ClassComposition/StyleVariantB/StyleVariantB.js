@@ -1,7 +1,15 @@
-var styles = require('./StyleVariantB.css');
+import styles from './StyleVariantB.css';
 
-var h = require('hyperscript');
+import React, { Component } from 'react';
 
-module.exports = h('div', { className: styles.root },
-  h('p', { className: styles.text }, 'Style Variant B')
-);
+export default class StyleVariantB extends Component {
+
+  render() {
+    return (
+      <div className={styles.root}>
+        <p className={styles.text}>Style Variant B</p>
+      </div>
+    );
+  }
+
+};

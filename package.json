@@ -6,11 +6,11 @@
   "scripts": {
     "test": "npm run build",
     "clean": "rm -rf dist && mkdir dist",
-    "browserify": "browserify -p [css-modulesify -o dist/main.css] -o dist/index.js src/index.js",
-    "watchify": "watchify -v -p [css-modulesify -o dist/main.css] -o dist/index.js src/index.js",
-    "copy": "cp src/index.html dist/index.html",
+    "browserify": "browserify -t babelify -t brfs -p [css-modulesify -o dist/main.css] -o dist/index.js src/index.js",
+    "watchify": "watchify -v -t babelify -t brfs -p [css-modulesify -o dist/main.css] -o dist/index.js src/index.js",
+    "copy": "cp src/index.html dist/index.html && cp src/components/0-Logo/logo.svg dist/logo.svg",
     "build": "npm run clean && npm run copy && npm run browserify",
-    "budo": "budo src/index.js:index.js --dir=dist -- -p [css-modulesify -o dist/main.css] | opnr | garnish",
+    "budo": "budo src/index.js:index.js --dir=dist -- -t babelify -t brfs -p [css-modulesify -o dist/main.css] | opnr | garnish",
     "start": "npm run clean && npm run copy && npm run budo",
     "deploy": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
   },
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/css-modules/browserify-demo",
   "devDependencies": {
+    "babelify": "^6.1.2",
+    "brfs": "^1.4.0",
     "browserify": "^10.2.3",
     "budo": "^4.0.0",
     "css-modulesify": "^0.2.4",
@@ -32,6 +34,7 @@
     "gh-pages": "git://github.com/markdalgleish/gh-pages#cli-message",
     "hyperscript": "^1.4.6",
     "opnr": "^1.0.4",
+    "react": "^0.13.3",
     "watchify": "^3.2.2"
   }
 }

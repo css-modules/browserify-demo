@@ -1,84 +1,59 @@
-var styles = require('./App.css');
+import styles from './App.css';
 
-var h = require('hyperscript');
+import React, { Component } from 'react';
 
-var ScopedSelectors = require('./1-ScopedSelectors/ScopedSelectors');
-var GlobalSelectors = require('./2-GlobalSelectors/GlobalSelectors');
-var ClassComposition = require('./3-ClassComposition/ClassComposition');
-var CompositionOverrides = require('./4-CompositionOverrides/CompositionOverrides');
-var ScopedAnimations = require('./5-ScopedAnimations/ScopedAnimations');
+import Logo from './0-Logo/Logo';
+import ScopedSelectorsDemo from './1-ScopedSelectors/ScopedSelectorsDemo';
+import GlobalSelectorsDemo from './2-GlobalSelectors/GlobalSelectorsDemo';
+import ClassCompositionDemo from './3-ClassComposition/ClassCompositionDemo';
+import CompositionOverridesDemo from './4-CompositionOverrides/CompositionOverridesDemo';
+import ScopedAnimationsDemo from './5-ScopedAnimations/ScopedAnimationsDemo';
 
-module.exports = h('div', { className: styles.app }, [
-  h('h1', 'CSS Modules Browserify Demo'),
+export default class App extends Component {
 
-  h('hr', { className: styles.hr }),
+  render() {
+    return (
+      <div className={styles.app}>
+        <Logo />
+        <h1>CSS Modules Browserify Demo</h1>
 
-  h('h2', 'Scoped Selectors'),
-  h('p', 'In CSS Modules, selectors are scoped by default.'),
-  h('p', [
-    'The following component uses two classes, ',
-    h('strong', '.root'),
-    ' and ',
-    h('strong', '.text'),
-    ', both of which would typically be too vague in a larger project.'
-  ]),
-  h('p', [
-    'CSS Module semantics ensure that these ',
-    h('strong', 'classes are locally scoped'),
-    ' to the component and don\'t collide with other classes in the global scope.'
-  ]),
-  ScopedSelectors,
+        <hr className={styles.hr} />
 
-  h('hr', { className: styles.hr }),
+        <h2>Scoped Selectors</h2>
+        <p>In CSS Modules, selectors are scoped by default.</p>
+        <p>The following component uses two classes, <strong>.root</strong> and <strong>.text</strong>, both of which would typically be too vague in a larger project.</p>
+        <p>CSS Module semantics ensure that these <strong>classes are locally scoped</strong> to the component and don't collide with other classes in the global scope.</p>
+        <ScopedSelectorsDemo />
 
-  h('h2', 'Global Selectors'),
-  h('p', [
-    'Although they should be used as sparingly as possible, ',
-    h('strong', 'global selectors are still available when required.')
-  ]),
-  h('p', [
-    'The following component styles all ',
-    h('strong', '<p>'),
-    ' tags nested inside it.'
-  ]),
-  GlobalSelectors,
+        <hr className={styles.hr} />
 
-  h('hr', { className: styles.hr }),
+        <h2>Global Selectors</h2>
+        <p>Although they should be used as sparingly as possible, <strong>global selectors are still available when required.</strong></p>
+        <p>The following component styles all <strong>&lt;p&gt;</strong> tags nested inside it.</p>
+        <GlobalSelectorsDemo />
 
-  h('h2', 'Class Composition'),
-  h('p', [
-    'Both of the components below have ',
-    h('strong', 'locally scoped CSS'),
-    ' that ',
-    h('strong', 'composes a common set of CSS Modules.')
-  ]),
-  h('p', [
-    'Since ',
-    h('strong', 'identifiers from CSS Modules can be composed'),
-    ', the resulting markup is optimised by ',
-    h('b', 'reusing classes between components.')
-  ]),
-  ClassComposition,
+        <hr className={styles.hr} />
 
-  h('hr', { className: styles.hr }),
+        <h2>Class Composition</h2>
+        <p>Both of the components below have <strong>locally scoped CSS</strong> that is <strong>composed from a common set of CSS Modules.</strong></p>
+        <p>Since <strong>CSS Modules can be composed</strong>, the resulting markup is optimised by <b>reusing classes between components</b>.</p>
+        <ClassCompositionDemo />
 
-  h('h2', 'Composition Overrides'),
-  h('p', [
-    'When composing classes, ',
-    h('strong', ' style properties can be overridden'),
-    ' as you\'d expect.'
-  ]),
-  h('p', 'The following component composes two different classes, but provides overrides which then take precedence.'),
-  CompositionOverrides,
+        <hr className={styles.hr} />
 
-  h('hr', { className: styles.hr }),
+        <h2>Composition Overrides</h2>
+        <p>When composing classes, <strong>inherited style properties can be overridden</strong> as you'd expect.</p>
+        <p>The following component composes two different classes, but provides overrides which then take precedence.</p>
+        <CompositionOverridesDemo />
 
-  h('h2', 'Scoped Animations'),
-  h('p', [
-    'CSS Modules even provide ',
-    h('strong', 'locally scoped animations'),
-    ', which are typically defined in the global scope.'
-  ]),
-  h('p', 'The animation\'s keyframes are private to the animations module, only exposed publicly via a class which this component inherits from.'),
-  ScopedAnimations
-]);
+        <hr className={styles.hr} />
+
+        <h2>Scoped Animations</h2>
+        <p>CSS Modules even provide <strong>locally scoped animations</strong>, which are typically defined in the global scope.</p>
+        <p>The animation's keyframes are private to the animations module, only exposed publicly via a class which this component inherits from.</p>
+        <ScopedAnimationsDemo />
+
+      </div>
+    );
+  }
+};

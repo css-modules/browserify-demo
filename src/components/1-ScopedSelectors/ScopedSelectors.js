@@ -1,7 +1,15 @@
-var styles = require('./ScopedSelectors.css');
+import styles from './ScopedSelectors.css';
 
-var h = require('hyperscript');
+import React, { Component } from 'react';
 
-module.exports = h('div', { className: styles.root },
-  h('p', { className: styles.text }, 'Scoped Selectors')
-);
+export default class ScopedSelectors extends Component {
+
+  render() {
+    return (
+      <div className={ styles.root }>
+        <p className={ styles.text }>Scoped Selectors</p>
+      </div>
+    );
+  }
+
+};
