@@ -92,25 +92,6 @@
   padding: 5px 20px 20px;
 }
 
-@keyframes _shared_styles_animations__bounce {
-  33% { transform: translateY(-20px); }
-  66% { transform: translateY(0px); }
-}
-
-._shared_styles_animations__bounce {
-  animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
-}
-._ScopedAnimations__root {
-  padding: 20px 10px;
-}
-
-._ScopedAnimations__ball {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: rebeccapurple;
-}
-
 ._shared_styles_layout__box {
   border-width: 2px;
   border-style: solid;
@@ -131,6 +112,25 @@
 ._CompositionOverrides__text {
   font-weight: 200;
   color: green;
+}
+
+@keyframes _shared_styles_animations__bounce {
+  33% { transform: translateY(-20px); }
+  66% { transform: translateY(0px); }
+}
+
+._shared_styles_animations__bounce {
+  animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
+}
+._ScopedAnimations__root {
+  padding: 20px 10px;
+}
+
+._ScopedAnimations__ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rebeccapurple;
 }
 
 ._StyleVariantA__root {
