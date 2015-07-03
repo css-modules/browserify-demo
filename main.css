@@ -140,18 +140,18 @@
   color: green;
 }
 
-._StyleVariantA__root___nl79j {
-  border-color: red;
-}
-
-._StyleVariantA__text___nl79j {
-  color: red;
-}
-
 ._StyleVariantB__root___9nkot {
   border-color: blue;
 }
 
 ._StyleVariantB__text___9nkot {
   color: blue;
+}
+
+._StyleVariantA__root___nl79j {
+  border-color: red;
+}
+
+._StyleVariantA__text___nl79j {
+  color: red;
 }
