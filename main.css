@@ -1,4 +1,4 @@
-._App__app {
+._App__app___1d41c {
   -webkit-text-size-adjust: none;
           text-size-adjust: none;
   font-family: helvetica, arial, sans-serif;
@@ -6,37 +6,21 @@
   padding: 6px 20px 30px;
 }
 
-._App__hr {
+._App__hr___1d41c {
   margin: 40px 0;
   height: 1px;
   border: 0;
   background: #ccc;
 }
 
-._Logo__logo {
+._Logo__logo___hvat4 {
   /* todo: fix rewriteUrl error and use url(./logo.svg) */
   background-size: 200px 200px;
   width: 200px;
   height: 200px;
 }
 
-._ScopedSelectors__root {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #777;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-
-._ScopedSelectors__text {
-  color: #777;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
-
-._GlobalSelectors__root {
+._GlobalSelectors__root___144mm {
   border-width: 2px;
   border-style: solid;
   border-color: brown;
@@ -45,18 +29,34 @@
   max-width: 400px;
 }
 
-._GlobalSelectors__root p {
+._GlobalSelectors__root___144mm p {
   color: brown;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
 }
 
-._Snippet__root {
+._ScopedSelectors__root___19f7x {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #777;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+._ScopedSelectors__text___19f7x {
+  color: #777;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+
+._Snippet__root___kxsdw {
   margin-top: 32px;
 }
 
-._Snippet__output {
+._Snippet__output___kxsdw {
   background: white;
   color: #333;
   max-width: 700px;
@@ -66,11 +66,11 @@
   border-top-width: 0;
 }
 
-._Snippet__outputContent {
+._Snippet__outputContent___kxsdw {
   padding: 40px 30px;
 }
 
-._Snippet__file {
+._Snippet__file___kxsdw {
   background: #003957;
   color: rgba(255, 255, 255, 0.9);
   max-width: 700px;
@@ -78,14 +78,14 @@
   margin-bottom: 20px;
 }
 
-._Snippet__fileName {
+._Snippet__fileName___kxsdw {
   background: #011E2D;
   color: #00B37D;
   padding: 10px 20px;
   border-radius: 10px 10px 0 0;
 }
 
-._Snippet__pre {
+._Snippet__pre___kxsdw {
   overflow: auto;
   font-family: menlo, consolas, monospace;
   font-size: 14px;
@@ -93,65 +93,65 @@
   padding: 5px 20px 20px;
 }
 
-._shared_styles_layout__box {
-  border-width: 2px;
-  border-style: solid;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-._shared_styles_typography__heading {
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
-._CompositionOverrides__root {
-  border-style: dotted;
-  border-color: green;
-}
-
-._CompositionOverrides__text {
-  font-weight: 200;
-  color: green;
-}
-
-@-webkit-keyframes _shared_styles_animations__bounce {
+@-webkit-keyframes _shared_styles_animations__bounce___1j2u8 {
   33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
   66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
 }
 
-@keyframes _shared_styles_animations__bounce {
+@keyframes _shared_styles_animations__bounce___1j2u8 {
   33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
   66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
 }
 
-._shared_styles_animations__bounce {
-  -webkit-animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
-          animation: _shared_styles_animations__bounce 1s infinite ease-in-out;
+._shared_styles_animations__bounce___1j2u8 {
+  -webkit-animation: _shared_styles_animations__bounce___1j2u8 1s infinite ease-in-out;
+          animation: _shared_styles_animations__bounce___1j2u8 1s infinite ease-in-out;
 }
-._ScopedAnimations__root {
+._ScopedAnimations__root___1fs1v {
   padding: 20px 10px;
 }
 
-._ScopedAnimations__ball {
+._ScopedAnimations__ball___1fs1v {
   width: 40px;
   height: 40px;
   border-radius: 20px;
   background: rgb(102, 51, 153);
 }
 
-._StyleVariantB__root {
-  border-color: blue;
+._shared_styles_layout__box___h02w1 {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+._shared_styles_typography__heading___cgo8u {
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+._CompositionOverrides__root___7vsxu {
+  border-style: dotted;
+  border-color: green;
 }
 
-._StyleVariantB__text {
-  color: blue;
+._CompositionOverrides__text___7vsxu {
+  font-weight: 200;
+  color: green;
 }
 
-._StyleVariantA__root {
+._StyleVariantA__root___nl79j {
   border-color: red;
 }
 
-._StyleVariantA__text {
+._StyleVariantA__text___nl79j {
   color: red;
+}
+
+._StyleVariantB__root___9nkot {
+  border-color: blue;
+}
+
+._StyleVariantB__text___9nkot {
+  color: blue;
 }

@@ -19809,7 +19809,7 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":29}],157:[function(require,module,exports){
-module.exports = {"logo":"_Logo__logo"}
+module.exports = {"logo":"_Logo__logo___hvat4"}
 },{}],158:[function(require,module,exports){
 'use strict';
 
@@ -19861,7 +19861,7 @@ exports['default'] = Logo;
 module.exports = exports['default'];
 
 },{"./Logo.css":157,"react":156}],159:[function(require,module,exports){
-module.exports = {"root":"_ScopedSelectors__root","text":"_ScopedSelectors__text"}
+module.exports = {"root":"_ScopedSelectors__root___19f7x","text":"_ScopedSelectors__text___19f7x"}
 },{}],160:[function(require,module,exports){
 'use strict';
 
@@ -19981,7 +19981,7 @@ exports['default'] = ScopedSelectorsDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./ScopedSelectors":160,"react":156}],162:[function(require,module,exports){
-module.exports = {"root":"_GlobalSelectors__root"}
+module.exports = {"root":"_GlobalSelectors__root___144mm"}
 },{}],163:[function(require,module,exports){
 'use strict';
 
@@ -20223,7 +20223,7 @@ exports['default'] = ClassCompositionDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./ClassComposition":165,"react":156}],167:[function(require,module,exports){
-module.exports = {"root":"_StyleVariantA__root _shared_styles_layout__box","text":"_StyleVariantA__text _shared_styles_typography__heading"}
+module.exports = {"root":"_StyleVariantA__root___nl79j _shared_styles_layout__box___h02w1","text":"_StyleVariantA__text___nl79j _shared_styles_typography__heading___cgo8u"}
 },{}],168:[function(require,module,exports){
 'use strict';
 
@@ -20281,7 +20281,7 @@ exports['default'] = StyleVariantA;
 module.exports = exports['default'];
 
 },{"./StyleVariantA.css":167,"react":156}],169:[function(require,module,exports){
-module.exports = {"root":"_StyleVariantB__root _shared_styles_layout__box","text":"_StyleVariantB__text _shared_styles_typography__heading"}
+module.exports = {"root":"_StyleVariantB__root___9nkot _shared_styles_layout__box___h02w1","text":"_StyleVariantB__text___9nkot _shared_styles_typography__heading___cgo8u"}
 },{}],170:[function(require,module,exports){
 'use strict';
 
@@ -20339,7 +20339,7 @@ exports['default'] = StyleVariantB;
 module.exports = exports['default'];
 
 },{"./StyleVariantB.css":169,"react":156}],171:[function(require,module,exports){
-module.exports = {"root":"_CompositionOverrides__root _shared_styles_layout__box","text":"_CompositionOverrides__text _shared_styles_typography__heading"}
+module.exports = {"root":"_CompositionOverrides__root___7vsxu _shared_styles_layout__box___h02w1","text":"_CompositionOverrides__text___7vsxu _shared_styles_typography__heading___cgo8u"}
 },{}],172:[function(require,module,exports){
 'use strict';
 
@@ -20461,7 +20461,7 @@ exports['default'] = CompositionOverridesDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./CompositionOverrides":172,"react":156}],174:[function(require,module,exports){
-module.exports = {"root":"_ScopedAnimations__root","ball":"_ScopedAnimations__ball _shared_styles_animations__bounce"}
+module.exports = {"root":"_ScopedAnimations__root___1fs1v","ball":"_ScopedAnimations__ball___1fs1v _shared_styles_animations__bounce___1j2u8"}
 },{}],175:[function(require,module,exports){
 'use strict';
 
@@ -20578,7 +20578,7 @@ exports['default'] = ScopedAnimationsDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./ScopedAnimations":175,"react":156}],177:[function(require,module,exports){
-module.exports = {"app":"_App__app","hr":"_App__hr"}
+module.exports = {"app":"_App__app___1d41c","hr":"_App__hr___1d41c"}
 },{}],178:[function(require,module,exports){
 'use strict';
 
@@ -20815,7 +20815,7 @@ exports['default'] = App;
 module.exports = exports['default'];
 
 },{"./0-Logo/Logo":158,"./1-ScopedSelectors/ScopedSelectorsDemo":161,"./2-GlobalSelectors/GlobalSelectorsDemo":164,"./3-ClassComposition/ClassCompositionDemo":166,"./4-CompositionOverrides/CompositionOverridesDemo":173,"./5-ScopedAnimations/ScopedAnimationsDemo":176,"./App.css":177,"react":156}],179:[function(require,module,exports){
-module.exports = {"root":"_Snippet__root","output":"_Snippet__output","outputContent":"_Snippet__outputContent","file":"_Snippet__file","fileName":"_Snippet__fileName","pre":"_Snippet__pre"}
+module.exports = {"root":"_Snippet__root___kxsdw","output":"_Snippet__output___kxsdw","outputContent":"_Snippet__outputContent___kxsdw","file":"_Snippet__file___kxsdw","fileName":"_Snippet__fileName___kxsdw","pre":"_Snippet__pre___kxsdw"}
 },{}],180:[function(require,module,exports){
 'use strict';
 
