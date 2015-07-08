@@ -20,22 +20,6 @@
   height: 200px;
 }
 
-._GlobalSelectors__root___144mm {
-  border-width: 2px;
-  border-style: solid;
-  border-color: brown;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-
-._GlobalSelectors__root___144mm p {
-  color: brown;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
-
 ._ScopedSelectors__root___19f7x {
   border-width: 2px;
   border-style: solid;
@@ -47,6 +31,22 @@
 
 ._ScopedSelectors__text___19f7x {
   color: #777;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+
+._GlobalSelectors__root___144mm {
+  border-width: 2px;
+  border-style: solid;
+  border-color: brown;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+._GlobalSelectors__root___144mm p {
+  color: brown;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
@@ -93,6 +93,28 @@
   padding: 5px 20px 20px;
 }
 
+._shared_styles_layout__box___h02w1 {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+._shared_styles_typography__heading___cgo8u {
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+._CompositionOverrides__root___7vsxu {
+  border-style: dotted;
+  border-color: green;
+}
+
+._CompositionOverrides__text___7vsxu {
+  font-weight: 200;
+  color: green;
+}
+
 @-webkit-keyframes _shared_styles_animations__bounce___1j2u8 {
   33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
   66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
@@ -116,28 +138,6 @@
   height: 40px;
   border-radius: 20px;
   background: rgb(102, 51, 153);
-}
-
-._shared_styles_layout__box___h02w1 {
-  border-width: 2px;
-  border-style: solid;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-._shared_styles_typography__heading___cgo8u {
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
-._CompositionOverrides__root___7vsxu {
-  border-style: dotted;
-  border-color: green;
-}
-
-._CompositionOverrides__text___7vsxu {
-  font-weight: 200;
-  color: green;
 }
 
 ._StyleVariantB__root___9nkot {
