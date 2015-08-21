@@ -6,11 +6,11 @@
   "scripts": {
     "test": "npm run build",
     "clean": "rm -rf dist && mkdir dist",
-    "browserify": "browserify -t babelify -t brfs -p [css-modulesify -u postcss-modules-local-by-default -u postcss-modules-extract-imports -u postcss-modules-scope -u postcss-color-rebeccapurple -u autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
-    "watchify": "watchify -v -t babelify -t brfs -p [css-modulesify -u postcss-modules-local-by-default -u postcss-modules-extract-imports -u postcss-modules-scope -u postcss-color-rebeccapurple -u autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
+    "browserify": "browserify -t babelify -p [css-modulesify -u postcss-modules-local-by-default -u postcss-modules-extract-imports -u postcss-modules-scope -u postcss-color-rebeccapurple -u autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
+    "watchify": "watchify -v -t babelify -p [css-modulesify -u postcss-modules-local-by-default -u postcss-modules-extract-imports -u postcss-modules-scope -u postcss-color-rebeccapurple -u autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
     "copy": "cp src/index.html dist/index.html && cp src/components/0-Logo/logo.svg dist/logo.svg",
     "build": "npm run clean && npm run copy && npm run browserify",
-    "budo": "budo src/index.js:index.js --dir=dist -- -t babelify -t brfs -p [css-modulesify -u postcss-modules-local-by-default -u postcss-modules-extract-imports -u postcss-modules-scope -u postcss-color-rebeccapurple -u autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] | opnr | garnish",
+    "budo": "budo src/index.js:index.js --dir=dist -- -t babelify -p [css-modulesify -u postcss-modules-local-by-default -u postcss-modules-extract-imports -u postcss-modules-scope -u postcss-color-rebeccapurple -u autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] | opnr | garnish",
     "start": "npm run clean && npm run copy && npm run budo",
     "deploy": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
   },
@@ -27,7 +27,7 @@
   "devDependencies": {
     "autoprefixer": "^5.2.0",
     "babelify": "^6.1.2",
-    "brfs": "^1.4.0",
+    "brfs": "git://github.com/joshwnj/brfs#ignore-option",
     "browserify": "^11.0.1",
     "budo": "^4.0.0",
     "css-modulesify": "^0.5.0",
@@ -41,5 +41,10 @@
     "postcss-modules-scope": "^0.0.8",
     "react": "^0.13.3",
     "watchify": "^3.2.2"
+  },
+  "browserify": {
+    "transform": [
+      ["brfs", { "ignore": "\\.(json|css)$" }]
+    ]
   }
 }
