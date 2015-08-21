@@ -19809,7 +19809,7 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":29}],157:[function(require,module,exports){
-module.exports = {"logo":"_Logo__logo___hvat4"}
+module.exports = {"logo":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_0_Logo_Logo__logo___hvat4"}
 },{}],158:[function(require,module,exports){
 'use strict';
 
@@ -19861,7 +19861,7 @@ exports['default'] = Logo;
 module.exports = exports['default'];
 
 },{"./Logo.css":157,"react":156}],159:[function(require,module,exports){
-module.exports = {"root":"_ScopedSelectors__root___19f7x","text":"_ScopedSelectors__text___19f7x"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_1_ScopedSelectors_ScopedSelectors__root___19f7x","text":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_1_ScopedSelectors_ScopedSelectors__text___19f7x"}
 },{}],160:[function(require,module,exports){
 'use strict';
 
@@ -19981,7 +19981,7 @@ exports['default'] = ScopedSelectorsDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./ScopedSelectors":160,"react":156}],162:[function(require,module,exports){
-module.exports = {"root":"_GlobalSelectors__root___144mm"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_2_GlobalSelectors_GlobalSelectors__root___144mm"}
 },{}],163:[function(require,module,exports){
 'use strict';
 
@@ -20223,7 +20223,7 @@ exports['default'] = ClassCompositionDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./ClassComposition":165,"react":156}],167:[function(require,module,exports){
-module.exports = {"root":"_StyleVariantA__root___nl79j _shared_styles_layout__box___h02w1","text":"_StyleVariantA__text___nl79j _shared_styles_typography__heading___cgo8u"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root___nl79j _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_layout__box___h02w1","text":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text___nl79j _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_typography__heading___cgo8u"}
 },{}],168:[function(require,module,exports){
 'use strict';
 
@@ -20281,7 +20281,7 @@ exports['default'] = StyleVariantA;
 module.exports = exports['default'];
 
 },{"./StyleVariantA.css":167,"react":156}],169:[function(require,module,exports){
-module.exports = {"root":"_StyleVariantB__root___9nkot _shared_styles_layout__box___h02w1","text":"_StyleVariantB__text___9nkot _shared_styles_typography__heading___cgo8u"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root___9nkot _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_layout__box___h02w1","text":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text___9nkot _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_typography__heading___cgo8u"}
 },{}],170:[function(require,module,exports){
 'use strict';
 
@@ -20339,7 +20339,7 @@ exports['default'] = StyleVariantB;
 module.exports = exports['default'];
 
 },{"./StyleVariantB.css":169,"react":156}],171:[function(require,module,exports){
-module.exports = {"root":"_CompositionOverrides__root___7vsxu _shared_styles_layout__box___h02w1","text":"_CompositionOverrides__text___7vsxu _shared_styles_typography__heading___cgo8u"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_4_CompositionOverrides_CompositionOverrides__root___7vsxu _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_layout__box___h02w1","text":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_4_CompositionOverrides_CompositionOverrides__text___7vsxu _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_typography__heading___cgo8u"}
 },{}],172:[function(require,module,exports){
 'use strict';
 
@@ -20461,7 +20461,7 @@ exports['default'] = CompositionOverridesDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./CompositionOverrides":172,"react":156}],174:[function(require,module,exports){
-module.exports = {"root":"_ScopedAnimations__root___1fs1v","ball":"_ScopedAnimations__ball___1fs1v _shared_styles_animations__bounce___1j2u8"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_5_ScopedAnimations_ScopedAnimations__root___1fs1v","ball":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_5_ScopedAnimations_ScopedAnimations__ball___1fs1v _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_animations__bounce___1j2u8"}
 },{}],175:[function(require,module,exports){
 'use strict';
 
@@ -20578,7 +20578,7 @@ exports['default'] = ScopedAnimationsDemo;
 module.exports = exports['default'];
 
 },{"../shared/Snippet/Snippet":180,"./ScopedAnimations":175,"react":156}],177:[function(require,module,exports){
-module.exports = {"app":"_App__app___1d41c","hr":"_App__hr___1d41c"}
+module.exports = {"app":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_App__app___1d41c","hr":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_App__hr___1d41c"}
 },{}],178:[function(require,module,exports){
 'use strict';
 
@@ -20815,7 +20815,7 @@ exports['default'] = App;
 module.exports = exports['default'];
 
 },{"./0-Logo/Logo":158,"./1-ScopedSelectors/ScopedSelectorsDemo":161,"./2-GlobalSelectors/GlobalSelectorsDemo":164,"./3-ClassComposition/ClassCompositionDemo":166,"./4-CompositionOverrides/CompositionOverridesDemo":173,"./5-ScopedAnimations/ScopedAnimationsDemo":176,"./App.css":177,"react":156}],179:[function(require,module,exports){
-module.exports = {"root":"_Snippet__root___kxsdw","output":"_Snippet__output___kxsdw","outputContent":"_Snippet__outputContent___kxsdw","file":"_Snippet__file___kxsdw","fileName":"_Snippet__fileName___kxsdw","pre":"_Snippet__pre___kxsdw"}
+module.exports = {"root":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__root___kxsdw","output":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__output___kxsdw","outputContent":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__outputContent___kxsdw","file":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__file___kxsdw","fileName":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__fileName___kxsdw","pre":"_home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__pre___kxsdw"}
 },{}],180:[function(require,module,exports){
 'use strict';
 
