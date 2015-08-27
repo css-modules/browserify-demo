@@ -1,4 +1,4 @@
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_App__app___1d41c {
+._src_components_App__app {
   -webkit-text-size-adjust: none;
           text-size-adjust: none;
   font-family: helvetica, arial, sans-serif;
@@ -6,37 +6,21 @@
   padding: 6px 20px 30px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_App__hr___1d41c {
+._src_components_App__hr {
   margin: 40px 0;
   height: 1px;
   border: 0;
   background: #ccc;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_0_Logo_Logo__logo___hvat4 {
+._src_components_0_Logo_Logo__logo {
   /* todo: fix rewriteUrl error and use url(./logo.svg) */
   background-size: 200px 200px;
   width: 200px;
   height: 200px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_1_ScopedSelectors_ScopedSelectors__root___19f7x {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #777;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_1_ScopedSelectors_ScopedSelectors__text___19f7x {
-  color: #777;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
-
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_2_GlobalSelectors_GlobalSelectors__root___144mm {
+._src_components_2_GlobalSelectors_GlobalSelectors__root {
   border-width: 2px;
   border-style: solid;
   border-color: brown;
@@ -45,65 +29,81 @@
   max-width: 400px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_2_GlobalSelectors_GlobalSelectors__root___144mm p {
+._src_components_2_GlobalSelectors_GlobalSelectors__root p {
   color: brown;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_layout__box___h02w1 {
+._src_components_1_ScopedSelectors_ScopedSelectors__root {
   border-width: 2px;
   border-style: solid;
+  border-color: #777;
   padding: 0 20px;
   margin: 0 6px;
   max-width: 400px;
 }
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_typography__heading___cgo8u {
+
+._src_components_1_ScopedSelectors_ScopedSelectors__text {
+  color: #777;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
 }
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_4_CompositionOverrides_CompositionOverrides__root___7vsxu {
-  border-style: dotted;
-  border-color: green;
-}
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_4_CompositionOverrides_CompositionOverrides__text___7vsxu {
-  font-weight: 200;
-  color: green;
-}
-
-@-webkit-keyframes _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_animations__bounce___1j2u8 {
+@-webkit-keyframes _src_components_shared_styles_animations__bounce {
   33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
   66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
 }
 
-@keyframes _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_animations__bounce___1j2u8 {
+@keyframes _src_components_shared_styles_animations__bounce {
   33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
   66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_animations__bounce___1j2u8 {
-  -webkit-animation: _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_animations__bounce___1j2u8 1s infinite ease-in-out;
-          animation: _home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_styles_animations__bounce___1j2u8 1s infinite ease-in-out;
+._src_components_shared_styles_animations__bounce {
+  -webkit-animation: _src_components_shared_styles_animations__bounce 1s infinite ease-in-out;
+          animation: _src_components_shared_styles_animations__bounce 1s infinite ease-in-out;
 }
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_5_ScopedAnimations_ScopedAnimations__root___1fs1v {
+._src_components_5_ScopedAnimations_ScopedAnimations__root {
   padding: 20px 10px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_5_ScopedAnimations_ScopedAnimations__ball___1fs1v {
+._src_components_5_ScopedAnimations_ScopedAnimations__ball {
   width: 40px;
   height: 40px;
   border-radius: 20px;
   background: rgb(102, 51, 153);
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__root___kxsdw {
+._src_components_shared_styles_layout__box {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+._src_components_shared_styles_typography__heading {
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+._src_components_4_CompositionOverrides_CompositionOverrides__root {
+  border-style: dotted;
+  border-color: green;
+}
+
+._src_components_4_CompositionOverrides_CompositionOverrides__text {
+  font-weight: 200;
+  color: green;
+}
+
+._src_components_shared_Snippet_Snippet__root {
   margin-top: 32px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__output___kxsdw {
+._src_components_shared_Snippet_Snippet__output {
   background: white;
   color: #333;
   max-width: 700px;
@@ -113,11 +113,11 @@
   border-top-width: 0;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__outputContent___kxsdw {
+._src_components_shared_Snippet_Snippet__outputContent {
   padding: 40px 30px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__file___kxsdw {
+._src_components_shared_Snippet_Snippet__file {
   background: #003957;
   color: rgba(255, 255, 255, 0.9);
   max-width: 700px;
@@ -125,14 +125,14 @@
   margin-bottom: 20px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__fileName___kxsdw {
+._src_components_shared_Snippet_Snippet__fileName {
   background: #011E2D;
   color: #00B37D;
   padding: 10px 20px;
   border-radius: 10px 10px 0 0;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_shared_Snippet_Snippet__pre___kxsdw {
+._src_components_shared_Snippet_Snippet__pre {
   overflow: auto;
   font-family: menlo, consolas, monospace;
   font-size: 14px;
@@ -140,18 +140,18 @@
   padding: 5px 20px 20px;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root___9nkot {
+._src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root {
   border-color: blue;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text___9nkot {
+._src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text {
   color: blue;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root___nl79j {
+._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root {
   border-color: red;
 }
 
-._home_rof_src_github_com_css_modules_browserify_demo_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text___nl79j {
+._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text {
   color: red;
 }
