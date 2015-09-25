@@ -1,14 +1,16 @@
+@value niceGray: #777;
+
 .root {
   border-width: 2px;
   border-style: solid;
-  border-color: #777;
+  border-color: niceGray;
   padding: 0 20px;
   margin: 0 6px;
   max-width: 400px;
 }
 
 .text {
-  color: #777;
+  color: niceGray;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
