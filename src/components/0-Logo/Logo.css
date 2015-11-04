@@ -1,5 +1,5 @@
 .logo {
-  /* todo: fix rewriteUrl error and use url(./logo.svg) */
+  background-image: url("./logo.svg");
   background-size: 200px 200px;
   width: 200px;
   height: 200px;
