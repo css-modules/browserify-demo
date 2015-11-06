@@ -6,11 +6,11 @@
   "scripts": {
     "test": "npm run build",
     "clean": "rm -rf dist && mkdir dist",
-    "browserify": "browserify -t babelify -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
-    "watchify": "watchify -v -t babelify -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
+    "browserify": "browserify -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
+    "watchify": "watchify -v -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
     "copy": "cp src/index.html dist/index.html && cp src/components/0-Logo/logo.svg dist/logo.svg",
     "build": "npm run clean && npm run copy && npm run browserify",
-    "budo": "budo src/index.js:index.js --dir=dist -- -t babelify -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css --json dist/css-modules.json] | opnr | garnish",
+    "budo": "budo src/index.js:index.js --open --dir=dist -- -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
     "start": "npm run clean && npm run copy && npm run budo",
     "deploy": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
   },
@@ -25,26 +25,32 @@
   },
   "homepage": "https://github.com/css-modules/browserify-demo",
   "devDependencies": {
-    "autoprefixer": "^5.2.0",
-    "babelify": "^6.1.2",
+    "autoprefixer": "^6.0.3",
+    "babel-preset-es2015": "^6.0.14",
+    "babel-preset-react": "^6.0.14",
+    "babelify": "^7.1.0",
     "brfs": "git://github.com/joshwnj/brfs#ignore-option",
-    "browserify": "^11.0.1",
-    "budo": "^4.0.0",
-    "css-modulesify": "^0.6.1",
-    "garnish": "^2.1.3",
+    "browserify": "^12.0.1",
+    "budo": "^6.0.0",
+    "css-modulesify": "^0.13.0",
     "gh-pages": "git://github.com/markdalgleish/gh-pages#cli-message",
     "hyperscript": "^1.4.6",
-    "opnr": "^1.0.4",
-    "postcss-color-rebeccapurple": "^1.1.0",
-    "postcss-modules-extract-imports": "^0.0.5",
-    "postcss-modules-local-by-default": "^0.0.11",
-    "postcss-modules-scope": "^0.0.8",
-    "react": "^0.13.3",
+    "postcss-color-rebeccapurple": "^2.0.0",
+    "postcss-modules-extract-imports": "^1.0.0",
+    "postcss-modules-local-by-default": "^1.0.0",
+    "postcss-modules-scope": "^1.0.0",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
     "watchify": "^3.2.2"
   },
   "browserify": {
     "transform": [
-      ["brfs", { "ignore": "\\.(json|css)$" }]
+      [
+        "brfs",
+        {
+          "ignore": "\\.(json|css)$"
+        }
+      ]
     ]
   }
 }
