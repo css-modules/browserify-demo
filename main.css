@@ -52,47 +52,6 @@
   font-weight: 600;
 }
 
-._src_components_shared_Snippet_Snippet__root {
-  margin-top: 32px;
-}
-
-._src_components_shared_Snippet_Snippet__output {
-  background: white;
-  color: #333;
-  max-width: 700px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #003957;
-  border-top-width: 0;
-}
-
-._src_components_shared_Snippet_Snippet__outputContent {
-  padding: 40px 30px;
-}
-
-._src_components_shared_Snippet_Snippet__file {
-  background: #003957;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 700px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-._src_components_shared_Snippet_Snippet__fileName {
-  background: #011E2D;
-  color: #00B37D;
-  padding: 10px 20px;
-  border-radius: 10px 10px 0 0;
-}
-
-._src_components_shared_Snippet_Snippet__pre {
-  overflow: auto;
-  font-family: menlo, consolas, monospace;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 5px 20px 20px;
-}
-
 ._src_components_shared_styles_layout__box {
   border-width: 2px;
   border-style: solid;
@@ -139,6 +98,47 @@
   height: 40px;
   border-radius: 20px;
   background: rgb(102, 51, 153);
+}
+
+._src_components_shared_Snippet_Snippet__root {
+  margin-top: 32px;
+}
+
+._src_components_shared_Snippet_Snippet__output {
+  background: white;
+  color: #333;
+  max-width: 700px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #003957;
+  border-top-width: 0;
+}
+
+._src_components_shared_Snippet_Snippet__outputContent {
+  padding: 40px 30px;
+}
+
+._src_components_shared_Snippet_Snippet__file {
+  background: #003957;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+._src_components_shared_Snippet_Snippet__fileName {
+  background: #011E2D;
+  color: #00B37D;
+  padding: 10px 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+._src_components_shared_Snippet_Snippet__pre {
+  overflow: auto;
+  font-family: menlo, consolas, monospace;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 20px 20px;
 }
 
 ._src_components_shared_styles_layout__box {
