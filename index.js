@@ -19051,10 +19051,8 @@ var Logo = (function (_Component) {
 
   _createClass(Logo, [{
     key: 'render',
-
-    // todo: fix rewriteUrl error and use url(./logo.svg) in Logo.css
     value: function render() {
-      return _react2.default.createElement('div', { className: _Logo2.default.logo, style: { 'background-image': 'url("./logo.svg")' } });
+      return _react2.default.createElement('div', { className: _Logo2.default.logo });
     }
   }]);
 
