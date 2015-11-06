@@ -115,6 +115,7 @@
   color: green;
 }
 
+
 @-webkit-keyframes _src_components_shared_styles_animations__bounce {
   33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
   66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
@@ -126,8 +127,8 @@
 }
 
 ._src_components_shared_styles_animations__bounce {
-  -webkit-animation: _src_components_shared_styles_animations__bounce 1s infinite ease-in-out;
-          animation: _src_components_shared_styles_animations__bounce 1s infinite ease-in-out;
+  -webkit-animation: _src_components_shared_styles_animations__bounce 0.6s infinite ease-in-out;
+          animation: _src_components_shared_styles_animations__bounce 0.6s infinite ease-in-out;
 }
 ._src_components_5_ScopedAnimations_ScopedAnimations__root {
   padding: 20px 10px;

@@ -19063,7 +19063,7 @@ exports.default = Logo;
 ;
 
 },{"./Logo.css":159,"react":158}],161:[function(require,module,exports){
-module.exports = {"root":"_src_components_1_ScopedSelectors_ScopedSelectors__root","text":"_src_components_1_ScopedSelectors_ScopedSelectors__text"}
+module.exports = {"niceGray":"#777","root":"_src_components_1_ScopedSelectors_ScopedSelectors__root","text":"_src_components_1_ScopedSelectors_ScopedSelectors__text"}
 },{}],162:[function(require,module,exports){
 'use strict';
 
@@ -19150,7 +19150,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var js = "import styles from './ScopedSelectors.css';\n\nimport React, { Component } from 'react';\n\nexport default class ScopedSelectors extends Component {\n\n  render() {\n    return (\n      <div className={ styles.root }>\n        <p className={ styles.text }>Scoped Selectors</p>\n      </div>\n    );\n  }\n\n};\n";
-var css = ".root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: #777;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n.text {\n  color: #777;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n";
+var css = "@value niceGray: #777;\n\n.root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: niceGray;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n.text {\n  color: niceGray;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n";
 
 var ScopedSelectorsDemo = (function (_Component) {
   _inherits(ScopedSelectorsDemo, _Component);
@@ -19737,7 +19737,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var js = "import styles from './ScopedAnimations.css';\n\nimport React, { Component } from 'react';\n\nexport default class ScopedAnimations extends Component {\n\n  render() {\n    return (\n      <div className={styles.root}>\n        <div className={styles.ball} />\n      </div>\n    );\n  }\n\n};\n";
 var css = ".root {\n  padding: 20px 10px;\n}\n\n.ball {\n  composes: bounce from \"../shared/styles/animations.css\";\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n";
-var animationsCss = "@keyframes bounce {\n  33% { transform: translateY(-20px); }\n  66% { transform: translateY(0px); }\n}\n\n.bounce {\n  animation: bounce 1s infinite ease-in-out;\n}\n";
+var animationsCss = "@value bounceAmount: -20px;\n@value duration as bounceDuration from \"./animation-values.css\";\n\n@keyframes bounce {\n  33% { transform: translateY(bounceAmount); }\n  66% { transform: translateY(0px); }\n}\n\n.bounce {\n  animation: bounce bounceDuration infinite ease-in-out;\n}\n";
 
 var ScopedAnimationsDemo = (function (_Component) {
   _inherits(ScopedAnimationsDemo, _Component);
