@@ -127,17 +127,17 @@
   line-height: 20px;
   padding: 5px 20px 20px;
 }
-._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root {
-  border-color: red;
-}
-
-._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text {
-  color: red;
-}
 ._src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root {
   border-color: blue;
 }
 
 ._src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text {
   color: blue;
+}
+._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root {
+  border-color: red;
+}
+
+._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text {
+  color: red;
 }
