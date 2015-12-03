@@ -3354,6 +3354,7 @@ var HTMLDOMPropertyConfig = {
     multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     name: null,
+    nonce: MUST_USE_ATTRIBUTE,
     noValidate: HAS_BOOLEAN_VALUE,
     open: HAS_BOOLEAN_VALUE,
     optimum: null,
@@ -3365,6 +3366,7 @@ var HTMLDOMPropertyConfig = {
     readOnly: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     rel: null,
     required: HAS_BOOLEAN_VALUE,
+    reversed: HAS_BOOLEAN_VALUE,
     role: MUST_USE_ATTRIBUTE,
     rows: MUST_USE_ATTRIBUTE | HAS_POSITIVE_NUMERIC_VALUE,
     rowSpan: null,
@@ -3810,6 +3812,7 @@ assign(React, {
 });
 
 React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
+React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
 
 module.exports = React;
 },{"./Object.assign":24,"./ReactDOM":37,"./ReactDOMServer":47,"./ReactIsomorphic":65,"./deprecated":108}],27:[function(require,module,exports){
@@ -14018,7 +14021,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.2';
+module.exports = '0.14.3';
 },{}],87:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -19014,6 +19017,7 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":26}],159:[function(require,module,exports){
+
 module.exports = {"logo":"_src_components_0_Logo_Logo__logo"}
 },{}],160:[function(require,module,exports){
 'use strict';
@@ -19063,6 +19067,7 @@ exports.default = Logo;
 ;
 
 },{"./Logo.css":159,"react":158}],161:[function(require,module,exports){
+
 module.exports = {"niceGray":"#777","root":"_src_components_1_ScopedSelectors_ScopedSelectors__root","text":"_src_components_1_ScopedSelectors_ScopedSelectors__text"}
 },{}],162:[function(require,module,exports){
 'use strict';
@@ -19181,6 +19186,7 @@ exports.default = ScopedSelectorsDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ScopedSelectors":162,"react":158}],164:[function(require,module,exports){
+
 module.exports = {"root":"_src_components_2_GlobalSelectors_GlobalSelectors__root"}
 },{}],165:[function(require,module,exports){
 'use strict';
@@ -19419,8 +19425,10 @@ exports.default = ClassCompositionDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ClassComposition":167,"react":158}],169:[function(require,module,exports){
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css')
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css')
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text _src_components_shared_styles_typography__heading"}
-},{}],170:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],170:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19476,8 +19484,10 @@ exports.default = StyleVariantA;
 ;
 
 },{"./StyleVariantA.css":169,"react":158}],171:[function(require,module,exports){
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css')
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css')
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text _src_components_shared_styles_typography__heading"}
-},{}],172:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],172:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19533,8 +19543,10 @@ exports.default = StyleVariantB;
 ;
 
 },{"./StyleVariantB.css":171,"react":158}],173:[function(require,module,exports){
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css')
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css')
 module.exports = {"root":"_src_components_4_CompositionOverrides_CompositionOverrides__root _src_components_shared_styles_layout__box","text":"_src_components_4_CompositionOverrides_CompositionOverrides__text _src_components_shared_styles_typography__heading"}
-},{}],174:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],174:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19653,8 +19665,10 @@ exports.default = CompositionOverridesDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./CompositionOverrides":174,"react":158}],176:[function(require,module,exports){
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css')
 module.exports = {"root":"_src_components_5_ScopedAnimations_ScopedAnimations__root","ball":"_src_components_5_ScopedAnimations_ScopedAnimations__ball _src_components_shared_styles_animations__bounce"}
-},{}],177:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css":184}],177:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19768,6 +19782,7 @@ exports.default = ScopedAnimationsDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ScopedAnimations":177,"react":158}],179:[function(require,module,exports){
+
 module.exports = {"app":"_src_components_App__app","hr":"_src_components_App__hr"}
 },{}],180:[function(require,module,exports){
 'use strict';
@@ -20004,6 +20019,7 @@ exports.default = App;
 ;
 
 },{"./0-Logo/Logo":160,"./1-ScopedSelectors/ScopedSelectorsDemo":163,"./2-GlobalSelectors/GlobalSelectorsDemo":166,"./3-ClassComposition/ClassCompositionDemo":168,"./4-CompositionOverrides/CompositionOverridesDemo":175,"./5-ScopedAnimations/ScopedAnimationsDemo":178,"./App.css":179,"react":158}],181:[function(require,module,exports){
+
 module.exports = {"root":"_src_components_shared_Snippet_Snippet__root","output":"_src_components_shared_Snippet_Snippet__output","outputContent":"_src_components_shared_Snippet_Snippet__outputContent","file":"_src_components_shared_Snippet_Snippet__file","fileName":"_src_components_shared_Snippet_Snippet__fileName","pre":"_src_components_shared_Snippet_Snippet__pre"}
 },{}],182:[function(require,module,exports){
 'use strict';
@@ -20086,6 +20102,18 @@ exports.default = Snippet;
 ;
 
 },{"./Snippet.css":181,"react":158}],183:[function(require,module,exports){
+
+module.exports = {"duration":"0.6s"}
+},{}],184:[function(require,module,exports){
+require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
+module.exports = {"bounceAmount":"-20px","bounceDuration":"0.6s","bounce":"_src_components_shared_styles_animations__bounce"}
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183}],185:[function(require,module,exports){
+
+module.exports = {"box":"_src_components_shared_styles_layout__box"}
+},{}],186:[function(require,module,exports){
+
+module.exports = {"heading":"_src_components_shared_styles_typography__heading"}
+},{}],187:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -20112,4 +20140,4 @@ if (typeof document !== 'undefined') {
 
 exports.default = _App2.default;
 
-},{"./components/App":180,"react":158,"react-dom":2}]},{},[183]);
+},{"./components/App":180,"react":158,"react-dom":2}]},{},[187]);
