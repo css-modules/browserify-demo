@@ -3354,7 +3354,6 @@ var HTMLDOMPropertyConfig = {
     multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     name: null,
-    nonce: MUST_USE_ATTRIBUTE,
     noValidate: HAS_BOOLEAN_VALUE,
     open: HAS_BOOLEAN_VALUE,
     optimum: null,
@@ -3366,7 +3365,6 @@ var HTMLDOMPropertyConfig = {
     readOnly: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     rel: null,
     required: HAS_BOOLEAN_VALUE,
-    reversed: HAS_BOOLEAN_VALUE,
     role: MUST_USE_ATTRIBUTE,
     rows: MUST_USE_ATTRIBUTE | HAS_POSITIVE_NUMERIC_VALUE,
     rowSpan: null,
@@ -3812,7 +3810,6 @@ assign(React, {
 });
 
 React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
-React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
 
 module.exports = React;
 },{"./Object.assign":24,"./ReactDOM":37,"./ReactDOMServer":47,"./ReactIsomorphic":65,"./deprecated":108}],27:[function(require,module,exports){
@@ -14021,7 +14018,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.3';
+module.exports = '0.14.2';
 },{}],87:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -19425,10 +19422,10 @@ exports.default = ClassCompositionDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ClassComposition":167,"react":158}],169:[function(require,module,exports){
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css')
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css')
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text _src_components_shared_styles_typography__heading"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],170:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],170:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19484,10 +19481,10 @@ exports.default = StyleVariantA;
 ;
 
 },{"./StyleVariantA.css":169,"react":158}],171:[function(require,module,exports){
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css')
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css')
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text _src_components_shared_styles_typography__heading"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],172:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],172:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19543,10 +19540,10 @@ exports.default = StyleVariantB;
 ;
 
 },{"./StyleVariantB.css":171,"react":158}],173:[function(require,module,exports){
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css')
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css')
 module.exports = {"root":"_src_components_4_CompositionOverrides_CompositionOverrides__root _src_components_shared_styles_layout__box","text":"_src_components_4_CompositionOverrides_CompositionOverrides__text _src_components_shared_styles_typography__heading"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],174:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],174:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -19665,10 +19662,10 @@ exports.default = CompositionOverridesDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./CompositionOverrides":174,"react":158}],176:[function(require,module,exports){
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animations.css')
 module.exports = {"root":"_src_components_5_ScopedAnimations_ScopedAnimations__root","ball":"_src_components_5_ScopedAnimations_ScopedAnimations__ball _src_components_shared_styles_animations__bounce"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css":184}],177:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animations.css":184}],177:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -20105,9 +20102,9 @@ exports.default = Snippet;
 
 module.exports = {"duration":"0.6s"}
 },{}],184:[function(require,module,exports){
-require('/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
+require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
 module.exports = {"bounceAmount":"-20px","bounceDuration":"0.6s","bounce":"_src_components_shared_styles_animations__bounce"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183}],185:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183}],185:[function(require,module,exports){
 
 module.exports = {"box":"_src_components_shared_styles_layout__box"}
 },{}],186:[function(require,module,exports){
