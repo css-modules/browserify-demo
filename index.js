@@ -3354,6 +3354,7 @@ var HTMLDOMPropertyConfig = {
     multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     name: null,
+    nonce: MUST_USE_ATTRIBUTE,
     noValidate: HAS_BOOLEAN_VALUE,
     open: HAS_BOOLEAN_VALUE,
     optimum: null,
@@ -3365,6 +3366,7 @@ var HTMLDOMPropertyConfig = {
     readOnly: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     rel: null,
     required: HAS_BOOLEAN_VALUE,
+    reversed: HAS_BOOLEAN_VALUE,
     role: MUST_USE_ATTRIBUTE,
     rows: MUST_USE_ATTRIBUTE | HAS_POSITIVE_NUMERIC_VALUE,
     rowSpan: null,
@@ -3415,8 +3417,8 @@ var HTMLDOMPropertyConfig = {
      */
     // autoCapitalize and autoCorrect are supported in Mobile Safari for
     // keyboard hints.
-    autoCapitalize: null,
-    autoCorrect: null,
+    autoCapitalize: MUST_USE_ATTRIBUTE,
+    autoCorrect: MUST_USE_ATTRIBUTE,
     // autoSave allows WebKit/Blink to persist values of input fields on page reloads
     autoSave: null,
     // color is for Safari mask-icon link
@@ -3447,9 +3449,7 @@ var HTMLDOMPropertyConfig = {
     httpEquiv: 'http-equiv'
   },
   DOMPropertyNames: {
-    autoCapitalize: 'autocapitalize',
     autoComplete: 'autocomplete',
-    autoCorrect: 'autocorrect',
     autoFocus: 'autofocus',
     autoPlay: 'autoplay',
     autoSave: 'autosave',
@@ -3810,6 +3810,7 @@ assign(React, {
 });
 
 React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
+React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
 
 module.exports = React;
 },{"./Object.assign":24,"./ReactDOM":37,"./ReactDOMServer":47,"./ReactIsomorphic":65,"./deprecated":108}],27:[function(require,module,exports){
@@ -7851,7 +7852,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -7891,7 +7895,7 @@ function updateOptionsIfPendingUpdateAndMounted() {
     var value = LinkedValueUtils.getValue(props);
 
     if (value != null) {
-      updateOptions(this, props, value);
+      updateOptions(this, Boolean(props.multiple), value);
     }
   }
 }
@@ -8970,7 +8974,9 @@ var DOM_OPERATION_TYPES = {
   'setValueForProperty': 'update attribute',
   'setValueForAttribute': 'update attribute',
   'deleteValueForProperty': 'remove attribute',
-  'dangerouslyReplaceNodeWithMarkupByID': 'replace'
+  'setValueForStyles': 'update styles',
+  'replaceNodeWithMarkup': 'replace',
+  'updateTextContent': 'set textContent'
 };
 
 function getTotalTime(measurements) {
@@ -14018,7 +14024,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.2';
+module.exports = '0.14.7';
 },{}],87:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -15113,6 +15119,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -15146,8 +15153,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -15158,7 +15163,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -18278,11 +18287,14 @@ module.exports = focusNode;
  * @typechecks
  */
 
+/* eslint-disable fb-www/typeof-undefined */
+
 /**
  * Same as document.activeElement but wraps in a try-catch block. In IE it is
  * not safe to call document.activeElement if there is nothing focused.
  *
- * The activeElement will be null only if the document or document body is not yet defined.
+ * The activeElement will be null only if the document or document body is not
+ * yet defined.
  */
 'use strict';
 
@@ -18290,7 +18302,6 @@ function getActiveElement() /*?DOMElement*/{
   if (typeof document === 'undefined') {
     return null;
   }
-
   try {
     return document.activeElement || document.body;
   } catch (e) {
@@ -18536,7 +18547,7 @@ module.exports = hyphenateStyleName;
  * will remain to ensure logic does not differ in production.
  */
 
-var invariant = function (condition, format, a, b, c, d, e, f) {
+function invariant(condition, format, a, b, c, d, e, f) {
   if (process.env.NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -18550,15 +18561,16 @@ var invariant = function (condition, format, a, b, c, d, e, f) {
     } else {
       var args = [a, b, c, d, e, f];
       var argIndex = 0;
-      error = new Error('Invariant Violation: ' + format.replace(/%s/g, function () {
+      error = new Error(format.replace(/%s/g, function () {
         return args[argIndex++];
       }));
+      error.name = 'Invariant Violation';
     }
 
     error.framesToPop = 1; // we don't care about invariant's own frame
     throw error;
   }
-};
+}
 
 module.exports = invariant;
 }).call(this,require('_process'))
@@ -18823,18 +18835,23 @@ module.exports = performance || {};
 'use strict';
 
 var performance = require('./performance');
-var curPerformance = performance;
+
+var performanceNow;
 
 /**
  * Detect if we can use `window.performance.now()` and gracefully fallback to
  * `Date.now()` if it doesn't exist. We need to support Firefox < 15 for now
  * because of Facebook's testing infrastructure.
  */
-if (!curPerformance || !curPerformance.now) {
-  curPerformance = Date;
+if (performance.now) {
+  performanceNow = function () {
+    return performance.now();
+  };
+} else {
+  performanceNow = function () {
+    return Date.now();
+  };
 }
-
-var performanceNow = curPerformance.now.bind(curPerformance);
 
 module.exports = performanceNow;
 },{"./performance":153}],155:[function(require,module,exports){
@@ -19014,16 +19031,15 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":26}],159:[function(require,module,exports){
-
 module.exports = {"logo":"_src_components_0_Logo_Logo__logo"}
 },{}],160:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _Logo = require('./Logo.css');
 
@@ -19041,7 +19057,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Logo = (function (_Component) {
+var Logo = function (_Component) {
   _inherits(Logo, _Component);
 
   function Logo() {
@@ -19058,22 +19074,21 @@ var Logo = (function (_Component) {
   }]);
 
   return Logo;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = Logo;
 ;
 
 },{"./Logo.css":159,"react":158}],161:[function(require,module,exports){
-
 module.exports = {"niceGray":"#777","root":"_src_components_1_ScopedSelectors_ScopedSelectors__root","text":"_src_components_1_ScopedSelectors_ScopedSelectors__text"}
 },{}],162:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _ScopedSelectors = require('./ScopedSelectors.css');
 
@@ -19091,7 +19106,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ScopedSelectors = (function (_Component) {
+var ScopedSelectors = function (_Component) {
   _inherits(ScopedSelectors, _Component);
 
   function ScopedSelectors() {
@@ -19116,7 +19131,7 @@ var ScopedSelectors = (function (_Component) {
   }]);
 
   return ScopedSelectors;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = ScopedSelectors;
 ;
@@ -19124,11 +19139,11 @@ exports.default = ScopedSelectors;
 },{"./ScopedSelectors.css":161,"react":158}],163:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _ScopedSelectors = require('./ScopedSelectors');
 
@@ -19154,7 +19169,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var js = "import styles from './ScopedSelectors.css';\n\nimport React, { Component } from 'react';\n\nexport default class ScopedSelectors extends Component {\n\n  render() {\n    return (\n      <div className={ styles.root }>\n        <p className={ styles.text }>Scoped Selectors</p>\n      </div>\n    );\n  }\n\n};\n";
 var css = "@value niceGray: #777;\n\n.root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: niceGray;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n.text {\n  color: niceGray;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n";
 
-var ScopedSelectorsDemo = (function (_Component) {
+var ScopedSelectorsDemo = function (_Component) {
   _inherits(ScopedSelectorsDemo, _Component);
 
   function ScopedSelectorsDemo() {
@@ -19177,22 +19192,21 @@ var ScopedSelectorsDemo = (function (_Component) {
   }]);
 
   return ScopedSelectorsDemo;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = ScopedSelectorsDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ScopedSelectors":162,"react":158}],164:[function(require,module,exports){
-
 module.exports = {"root":"_src_components_2_GlobalSelectors_GlobalSelectors__root"}
 },{}],165:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _GlobalSelectors = require('./GlobalSelectors.css');
 
@@ -19210,7 +19224,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var GlobalSelectors = (function (_Component) {
+var GlobalSelectors = function (_Component) {
   _inherits(GlobalSelectors, _Component);
 
   function GlobalSelectors() {
@@ -19235,7 +19249,7 @@ var GlobalSelectors = (function (_Component) {
   }]);
 
   return GlobalSelectors;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = GlobalSelectors;
 ;
@@ -19243,11 +19257,11 @@ exports.default = GlobalSelectors;
 },{"./GlobalSelectors.css":164,"react":158}],166:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _GlobalSelectors = require('./GlobalSelectors');
 
@@ -19273,7 +19287,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var js = "import styles from './GlobalSelectors.css';\n\nimport React, { Component } from 'react';\n\nexport default class GlobalSelectors extends Component {\n\n  render() {\n    return (\n      <div className={ styles.root }>\n        <p>Global Selectors</p>\n      </div>\n    );\n  }\n\n};\n";
 var css = ".root {\n  border-width: 2px;\n  border-style: solid;\n  border-color: brown;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n\n.root :global p {\n  color: brown;\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n";
 
-var GlobalSelectorsDemo = (function (_Component) {
+var GlobalSelectorsDemo = function (_Component) {
   _inherits(GlobalSelectorsDemo, _Component);
 
   function GlobalSelectorsDemo() {
@@ -19296,7 +19310,7 @@ var GlobalSelectorsDemo = (function (_Component) {
   }]);
 
   return GlobalSelectorsDemo;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = GlobalSelectorsDemo;
 ;
@@ -19304,11 +19318,11 @@ exports.default = GlobalSelectorsDemo;
 },{"../shared/Snippet/Snippet":182,"./GlobalSelectors":165,"react":158}],167:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -19330,7 +19344,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ClassComposition = (function (_Component) {
+var ClassComposition = function (_Component) {
   _inherits(ClassComposition, _Component);
 
   function ClassComposition() {
@@ -19353,7 +19367,7 @@ var ClassComposition = (function (_Component) {
   }]);
 
   return ClassComposition;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = ClassComposition;
 ;
@@ -19361,11 +19375,11 @@ exports.default = ClassComposition;
 },{"./StyleVariantA/StyleVariantA":170,"./StyleVariantB/StyleVariantB":172,"react":158}],168:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _ClassComposition = require('./ClassComposition');
 
@@ -19393,7 +19407,7 @@ var css = ".root {\n  composes: box from \"../../shared/styles/layout.css\";\n  
 var layoutCss = ".box {\n  border-width: 2px;\n  border-style: solid;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n";
 var typographyCss = ".heading {\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n";
 
-var ClassCompositionDemo = (function (_Component) {
+var ClassCompositionDemo = function (_Component) {
   _inherits(ClassCompositionDemo, _Component);
 
   function ClassCompositionDemo() {
@@ -19416,23 +19430,23 @@ var ClassCompositionDemo = (function (_Component) {
   }]);
 
   return ClassCompositionDemo;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = ClassCompositionDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ClassComposition":167,"react":158}],169:[function(require,module,exports){
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css')
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css')
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css")
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css")
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text _src_components_shared_styles_typography__heading"}
-},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],170:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],170:[function(require,module,exports){
 'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _StyleVariantA = require('./StyleVariantA.css');
 
@@ -19450,7 +19464,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var StyleVariantA = (function (_Component) {
+var StyleVariantA = function (_Component) {
   _inherits(StyleVariantA, _Component);
 
   function StyleVariantA() {
@@ -19475,23 +19489,23 @@ var StyleVariantA = (function (_Component) {
   }]);
 
   return StyleVariantA;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = StyleVariantA;
 ;
 
 },{"./StyleVariantA.css":169,"react":158}],171:[function(require,module,exports){
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css')
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css')
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css")
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css")
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text _src_components_shared_styles_typography__heading"}
-},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],172:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],172:[function(require,module,exports){
 'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _StyleVariantB = require('./StyleVariantB.css');
 
@@ -19509,7 +19523,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var StyleVariantB = (function (_Component) {
+var StyleVariantB = function (_Component) {
   _inherits(StyleVariantB, _Component);
 
   function StyleVariantB() {
@@ -19534,23 +19548,23 @@ var StyleVariantB = (function (_Component) {
   }]);
 
   return StyleVariantB;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = StyleVariantB;
 ;
 
 },{"./StyleVariantB.css":171,"react":158}],173:[function(require,module,exports){
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css')
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css')
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css")
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css")
 module.exports = {"root":"_src_components_4_CompositionOverrides_CompositionOverrides__root _src_components_shared_styles_layout__box","text":"_src_components_4_CompositionOverrides_CompositionOverrides__text _src_components_shared_styles_typography__heading"}
-},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],174:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":185,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":186}],174:[function(require,module,exports){
 'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _CompositionOverrides = require('./CompositionOverrides.css');
 
@@ -19568,7 +19582,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CompositionOverrides = (function (_Component) {
+var CompositionOverrides = function (_Component) {
   _inherits(CompositionOverrides, _Component);
 
   function CompositionOverrides() {
@@ -19593,7 +19607,7 @@ var CompositionOverrides = (function (_Component) {
   }]);
 
   return CompositionOverrides;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = CompositionOverrides;
 ;
@@ -19601,11 +19615,11 @@ exports.default = CompositionOverrides;
 },{"./CompositionOverrides.css":173,"react":158}],175:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _CompositionOverrides = require('./CompositionOverrides');
 
@@ -19633,7 +19647,7 @@ var css = ".root {\n  composes: box from \"../shared/styles/layout.css\";\n  bor
 var layoutCss = ".box {\n  border-width: 2px;\n  border-style: solid;\n  padding: 0 20px;\n  margin: 0 6px;\n  max-width: 400px;\n}\n";
 var typographyCss = ".heading {\n  font-size: 24px;\n  font-family: helvetica, arial, sans-serif;\n  font-weight: 600;\n}\n";
 
-var CompositionOverridesDemo = (function (_Component) {
+var CompositionOverridesDemo = function (_Component) {
   _inherits(CompositionOverridesDemo, _Component);
 
   function CompositionOverridesDemo() {
@@ -19656,23 +19670,23 @@ var CompositionOverridesDemo = (function (_Component) {
   }]);
 
   return CompositionOverridesDemo;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = CompositionOverridesDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./CompositionOverrides":174,"react":158}],176:[function(require,module,exports){
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animations.css')
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css")
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css")
 module.exports = {"root":"_src_components_5_ScopedAnimations_ScopedAnimations__root","ball":"_src_components_5_ScopedAnimations_ScopedAnimations__ball _src_components_shared_styles_animations__bounce"}
-},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animations.css":184}],177:[function(require,module,exports){
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css":184}],177:[function(require,module,exports){
 'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _ScopedAnimations = require('./ScopedAnimations.css');
 
@@ -19690,7 +19704,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ScopedAnimations = (function (_Component) {
+var ScopedAnimations = function (_Component) {
   _inherits(ScopedAnimations, _Component);
 
   function ScopedAnimations() {
@@ -19711,7 +19725,7 @@ var ScopedAnimations = (function (_Component) {
   }]);
 
   return ScopedAnimations;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = ScopedAnimations;
 ;
@@ -19719,11 +19733,11 @@ exports.default = ScopedAnimations;
 },{"./ScopedAnimations.css":176,"react":158}],178:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _ScopedAnimations = require('./ScopedAnimations');
 
@@ -19750,7 +19764,7 @@ var js = "import styles from './ScopedAnimations.css';\n\nimport React, { Compon
 var css = ".root {\n  padding: 20px 10px;\n}\n\n.ball {\n  composes: bounce from \"../shared/styles/animations.css\";\n  width: 40px;\n  height: 40px;\n  border-radius: 20px;\n  background: rebeccapurple;\n}\n";
 var animationsCss = "@value bounceAmount: -20px;\n@value duration as bounceDuration from \"./animation-values.css\";\n\n@keyframes bounce {\n  33% { transform: translateY(bounceAmount); }\n  66% { transform: translateY(0px); }\n}\n\n.bounce {\n  animation: bounce bounceDuration infinite ease-in-out;\n}\n";
 
-var ScopedAnimationsDemo = (function (_Component) {
+var ScopedAnimationsDemo = function (_Component) {
   _inherits(ScopedAnimationsDemo, _Component);
 
   function ScopedAnimationsDemo() {
@@ -19773,22 +19787,21 @@ var ScopedAnimationsDemo = (function (_Component) {
   }]);
 
   return ScopedAnimationsDemo;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = ScopedAnimationsDemo;
 ;
 
 },{"../shared/Snippet/Snippet":182,"./ScopedAnimations":177,"react":158}],179:[function(require,module,exports){
-
 module.exports = {"app":"_src_components_App__app","hr":"_src_components_App__hr"}
 },{}],180:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _App = require('./App.css');
 
@@ -19830,7 +19843,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = (function (_Component) {
+var App = function (_Component) {
   _inherits(App, _Component);
 
   function App() {
@@ -20010,22 +20023,21 @@ var App = (function (_Component) {
   }]);
 
   return App;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = App;
 ;
 
 },{"./0-Logo/Logo":160,"./1-ScopedSelectors/ScopedSelectorsDemo":163,"./2-GlobalSelectors/GlobalSelectorsDemo":166,"./3-ClassComposition/ClassCompositionDemo":168,"./4-CompositionOverrides/CompositionOverridesDemo":175,"./5-ScopedAnimations/ScopedAnimationsDemo":178,"./App.css":179,"react":158}],181:[function(require,module,exports){
-
 module.exports = {"root":"_src_components_shared_Snippet_Snippet__root","output":"_src_components_shared_Snippet_Snippet__output","outputContent":"_src_components_shared_Snippet_Snippet__outputContent","file":"_src_components_shared_Snippet_Snippet__file","fileName":"_src_components_shared_Snippet_Snippet__fileName","pre":"_src_components_shared_Snippet_Snippet__pre"}
 },{}],182:[function(require,module,exports){
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _Snippet = require('./Snippet.css');
 
@@ -20043,7 +20055,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Snippet = (function (_Component) {
+var Snippet = function (_Component) {
   _inherits(Snippet, _Component);
 
   function Snippet() {
@@ -20093,22 +20105,19 @@ var Snippet = (function (_Component) {
   }]);
 
   return Snippet;
-})(_react.Component);
+}(_react.Component);
 
 exports.default = Snippet;
 ;
 
 },{"./Snippet.css":181,"react":158}],183:[function(require,module,exports){
-
 module.exports = {"duration":"0.6s"}
 },{}],184:[function(require,module,exports){
-require('/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css')
+require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css")
 module.exports = {"bounceAmount":"-20px","bounceDuration":"0.6s","bounce":"_src_components_shared_styles_animations__bounce"}
-},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183}],185:[function(require,module,exports){
-
+},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":183}],185:[function(require,module,exports){
 module.exports = {"box":"_src_components_shared_styles_layout__box"}
 },{}],186:[function(require,module,exports){
-
 module.exports = {"heading":"_src_components_shared_styles_typography__heading"}
 },{}],187:[function(require,module,exports){
 'use strict';
