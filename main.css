@@ -18,21 +18,6 @@
   width: 200px;
   height: 200px;
 }
-._src_components_1_ScopedSelectors_ScopedSelectors__root {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #777;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-
-._src_components_1_ScopedSelectors_ScopedSelectors__text {
-  color: #777;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
 ._src_components_2_GlobalSelectors_GlobalSelectors__root {
   border-width: 2px;
   border-style: solid;
@@ -48,26 +33,20 @@
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
 }
-._src_components_shared_styles_layout__box {
+._src_components_1_ScopedSelectors_ScopedSelectors__root {
   border-width: 2px;
   border-style: solid;
+  border-color: #777;
   padding: 0 20px;
   margin: 0 6px;
   max-width: 400px;
 }
-._src_components_shared_styles_typography__heading {
+
+._src_components_1_ScopedSelectors_ScopedSelectors__text {
+  color: #777;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
-}
-._src_components_4_CompositionOverrides_CompositionOverrides__root {
-  border-style: dotted;
-  border-color: green;
-}
-
-._src_components_4_CompositionOverrides_CompositionOverrides__text {
-  font-weight: 200;
-  color: green;
 }
 
 @-webkit-keyframes _src_components_shared_styles_animations__bounce {
@@ -93,6 +72,27 @@
   height: 40px;
   border-radius: 20px;
   background: rgb(102, 51, 153);
+}
+._src_components_shared_styles_layout__box {
+  border-width: 2px;
+  border-style: solid;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+._src_components_shared_styles_typography__heading {
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+._src_components_4_CompositionOverrides_CompositionOverrides__root {
+  border-style: dotted;
+  border-color: green;
+}
+
+._src_components_4_CompositionOverrides_CompositionOverrides__text {
+  font-weight: 200;
+  color: green;
 }
 ._src_components_shared_Snippet_Snippet__root {
   margin-top: 32px;
