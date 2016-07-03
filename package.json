@@ -6,11 +6,11 @@
   "scripts": {
     "test": "npm run build",
     "clean": "rm -rf dist && mkdir dist",
-    "browserify": "browserify -t [babelify --presets es2015 --presets react] -p [css-modulesify --before postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
-    "watchify": "watchify -v -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css] -o dist/index.js src/index.js",
+    "browserify": "browserify -t [babelify --presets es2015 --presets react] -p [css-modulesify --before postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers \"> 5%\" -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
+    "watchify": "watchify -v -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers \"> 5%\" -o dist/main.css] -o dist/index.js src/index.js",
     "copy": "cp src/index.html dist/index.html && cp src/components/0-Logo/logo.svg dist/logo.svg",
     "build": "npm run clean && npm run copy && npm run browserify",
-    "budo": "budo src/index.js:index.js --open --dir=dist -- -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers '> 5%' -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
+    "budo": "budo src/index.js:index.js --open --dir=dist -- -t [babelify --presets es2015 --presets react] -p [css-modulesify --after postcss-color-rebeccapurple --after autoprefixer --autoprefixer.browsers \"> 5%\" -o dist/main.css --json dist/css-modules.json] -o dist/index.js src/index.js",
     "start": "npm run clean && npm run copy && npm run budo",
     "deploy": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\""
   },
