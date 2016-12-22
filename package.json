@@ -36,7 +36,7 @@
     "budo": "^6.0.0",
     "css-modulesify": "^0.26.0",
     "gh-pages": "git://github.com/markdalgleish/gh-pages#cli-message",
-    "hyperscript": "^1.4.6",
+    "hyperscript": "^2.0.2",
     "monobrow": "^2.1.0",
     "postcss-color-rebeccapurple": "^2.0.0",
     "postcss-modules-extract-imports": "^1.0.0",
