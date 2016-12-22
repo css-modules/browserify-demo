@@ -1,5 +1,6 @@
 ._src_components_App__app {
   -webkit-text-size-adjust: none;
+      -ms-text-size-adjust: none;
           text-size-adjust: none;
   font-family: helvetica, arial, sans-serif;
   line-height: 200%;
@@ -18,21 +19,6 @@
   width: 200px;
   height: 200px;
 }
-._src_components_2_GlobalSelectors_GlobalSelectors__root {
-  border-width: 2px;
-  border-style: solid;
-  border-color: brown;
-  padding: 0 20px;
-  margin: 0 6px;
-  max-width: 400px;
-}
-
-._src_components_2_GlobalSelectors_GlobalSelectors__root p {
-  color: brown;
-  font-size: 24px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: 600;
-}
 ._src_components_1_ScopedSelectors_ScopedSelectors__root {
   border-width: 2px;
   border-style: solid;
@@ -44,6 +30,21 @@
 
 ._src_components_1_ScopedSelectors_ScopedSelectors__text {
   color: #777;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+._src_components_2_GlobalSelectors_GlobalSelectors__root {
+  border-width: 2px;
+  border-style: solid;
+  border-color: brown;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+._src_components_2_GlobalSelectors_GlobalSelectors__root p {
+  color: brown;
   font-size: 24px;
   font-family: helvetica, arial, sans-serif;
   font-weight: 600;
@@ -81,8 +82,8 @@
 }
 
 ._src_components_shared_styles_animations__bounce {
-  -webkit-animation: _src_components_shared_styles_animations__bounce 0.6s infinite ease-in-out;
-          animation: _src_components_shared_styles_animations__bounce 0.6s infinite ease-in-out;
+  -webkit-animation: _src_components_shared_styles_animations__bounce :local(0.6s) infinite ease-in-out;
+          animation: _src_components_shared_styles_animations__bounce :local(0.6s) infinite ease-in-out;
 }
 ._src_components_5_ScopedAnimations_ScopedAnimations__root {
   padding: 20px 10px;
