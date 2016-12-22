@@ -404,10 +404,10 @@ exports.default = ClassCompositionDemo;
 ;
 
 },{"../shared/Snippet/Snippet":24,"./ClassComposition":9,"react":"react"}],11:[function(require,module,exports){
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css")
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css")
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text _src_components_shared_styles_typography__heading"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":27,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":28}],12:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":27,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":28}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -463,10 +463,10 @@ exports.default = StyleVariantA;
 ;
 
 },{"./StyleVariantA.css":11,"react":"react"}],13:[function(require,module,exports){
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css")
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css")
 module.exports = {"root":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root _src_components_shared_styles_layout__box","text":"_src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text _src_components_shared_styles_typography__heading"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":27,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":28}],14:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":27,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":28}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -522,10 +522,10 @@ exports.default = StyleVariantB;
 ;
 
 },{"./StyleVariantB.css":13,"react":"react"}],15:[function(require,module,exports){
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css")
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css")
 module.exports = {"root":"_src_components_4_CompositionOverrides_CompositionOverrides__root _src_components_shared_styles_layout__box","text":"_src_components_4_CompositionOverrides_CompositionOverrides__text _src_components_shared_styles_typography__heading"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/layout.css":27,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/typography.css":28}],16:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/layout.css":27,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/typography.css":28}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -644,10 +644,10 @@ exports.default = CompositionOverridesDemo;
 ;
 
 },{"../shared/Snippet/Snippet":24,"./CompositionOverrides":16,"react":"react"}],18:[function(require,module,exports){
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css")
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animations.css")
 module.exports = {"root":"_src_components_5_ScopedAnimations_ScopedAnimations__root","ball":"_src_components_5_ScopedAnimations_ScopedAnimations__ball _src_components_shared_styles_animations__bounce"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":25,"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animations.css":26}],19:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":25,"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animations.css":26}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1081,9 +1081,9 @@ exports.default = Snippet;
 },{"./Snippet.css":23,"react":"react"}],25:[function(require,module,exports){
 module.exports = {"duration":"0.6s"}
 },{}],26:[function(require,module,exports){
-require("/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css")
+require("/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css")
 module.exports = {"bounceAmount":"-20px","bounceDuration":"0.6s","bounce":"_src_components_shared_styles_animations__bounce"}
-},{"/Users/josh/projects/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":25}],27:[function(require,module,exports){
+},{"/home/rof/src/github.com/css-modules/browserify-demo/src/components/shared/styles/animation-values.css":25}],27:[function(require,module,exports){
 module.exports = {"box":"_src_components_shared_styles_layout__box"}
 },{}],28:[function(require,module,exports){
 module.exports = {"heading":"_src_components_shared_styles_typography__heading"}

@@ -70,31 +70,6 @@
   font-weight: 200;
   color: green;
 }
-
-@-webkit-keyframes _src_components_shared_styles_animations__bounce {
-  33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
-  66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
-}
-
-@keyframes _src_components_shared_styles_animations__bounce {
-  33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
-  66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
-}
-
-._src_components_shared_styles_animations__bounce {
-  -webkit-animation: _src_components_shared_styles_animations__bounce :local(0.6s) infinite ease-in-out;
-          animation: _src_components_shared_styles_animations__bounce :local(0.6s) infinite ease-in-out;
-}
-._src_components_5_ScopedAnimations_ScopedAnimations__root {
-  padding: 20px 10px;
-}
-
-._src_components_5_ScopedAnimations_ScopedAnimations__ball {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: rgb(102, 51, 153);
-}
 ._src_components_shared_Snippet_Snippet__root {
   margin-top: 32px;
 }
@@ -135,12 +110,30 @@
   line-height: 20px;
   padding: 5px 20px 20px;
 }
-._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root {
-  border-color: red;
+
+@-webkit-keyframes _src_components_shared_styles_animations__bounce {
+  33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+  66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
 }
 
-._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text {
-  color: red;
+@keyframes _src_components_shared_styles_animations__bounce {
+  33% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+  66% { -webkit-transform: translateY(0px); transform: translateY(0px); }
+}
+
+._src_components_shared_styles_animations__bounce {
+  -webkit-animation: _src_components_shared_styles_animations__bounce :local(0.6s) infinite ease-in-out;
+          animation: _src_components_shared_styles_animations__bounce :local(0.6s) infinite ease-in-out;
+}
+._src_components_5_ScopedAnimations_ScopedAnimations__root {
+  padding: 20px 10px;
+}
+
+._src_components_5_ScopedAnimations_ScopedAnimations__ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rgb(102, 51, 153);
 }
 ._src_components_3_ClassComposition_StyleVariantB_StyleVariantB__root {
   border-color: blue;
@@ -148,4 +141,11 @@
 
 ._src_components_3_ClassComposition_StyleVariantB_StyleVariantB__text {
   color: blue;
+}
+._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__root {
+  border-color: red;
+}
+
+._src_components_3_ClassComposition_StyleVariantA_StyleVariantA__text {
+  color: red;
 }
