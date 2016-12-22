@@ -32,7 +32,7 @@
     "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
     "brfs": "git://github.com/joshwnj/brfs#ignore-option",
-    "browserify": "^12.0.1",
+    "browserify": "^13.1.1",
     "budo": "^6.0.0",
     "css-modulesify": "^0.26.0",
     "gh-pages": "git://github.com/markdalgleish/gh-pages#cli-message",
