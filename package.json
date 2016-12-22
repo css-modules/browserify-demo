@@ -34,7 +34,7 @@
     "brfs": "git://github.com/joshwnj/brfs#ignore-option",
     "browserify": "^12.0.1",
     "budo": "^6.0.0",
-    "css-modulesify": "^0.25.1",
+    "css-modulesify": "^0.26.0",
     "gh-pages": "git://github.com/markdalgleish/gh-pages#cli-message",
     "hyperscript": "^1.4.6",
     "monobrow": "^2.1.0",
