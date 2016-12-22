@@ -26,9 +26,9 @@
   "homepage": "https://github.com/css-modules/browserify-demo",
   "devDependencies": {
     "autoprefixer": "^6.0.3",
-    "babel-preset-es2015": "^6.0.14",
-    "babel-preset-react": "^6.0.14",
-    "babelify": "^7.1.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
     "brfs": "git://github.com/joshwnj/brfs#ignore-option",
     "browserify": "^12.0.1",
     "budo": "^6.0.0",
