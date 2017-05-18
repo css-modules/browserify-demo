@@ -1,18 +1,22 @@
 const m = require('monobrow')
-const browserDeps = require('./deps').modules
 
 module.exports = {
   entry: 'src/index.js',
-  outDir: 'dist',
+  output: {
+    dir: 'dist',
+    vendor: 'vendor.js'
+  },
+
+  vendor: [
+    'react',
+    'react-dom'
+  ],
 
   // disable browserify-incremental as css-modulesify is not yet compatible
   inc: false,
 
-  setup: [
+  packs: [
     require('./babel'),
     require('./css-modules'),
-
-    // browser dependencies will be included in a separate bundle
-    m.external(browserDeps)
   ]
 }
